@@ -43,7 +43,7 @@ namespace RestaurantManager
             string sql = "SELECT * FROM ORDERS";
             dataGridView1.DataSource = db.getData(sql);
         }
-
+        // ngan OC test
         public void getDataBook()
         {
             DBServices db = new DBServices();
