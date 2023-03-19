@@ -22,5 +22,11 @@ namespace RestaurantManager
             frmDeskManager dm = new frmDeskManager();
             dm.ShowDialog();
         }
+
+        private void btnOrderManagement_Click(object sender, EventArgs e)
+        {
+            frmOrders od = new frmOrders();
+            od.ShowDialog();
+        }
     }
 }

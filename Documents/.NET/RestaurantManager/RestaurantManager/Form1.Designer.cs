@@ -31,6 +31,7 @@
             this.btnTable = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFinancialManagement = new System.Windows.Forms.Button();
+            this.btnOrderManagement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTable
@@ -64,11 +65,23 @@
             this.btnFinancialManagement.Text = "Quản lý tài chính";
             this.btnFinancialManagement.UseVisualStyleBackColor = true;
             // 
+            // btnOrderManagement
+            // 
+            this.btnOrderManagement.Location = new System.Drawing.Point(509, 280);
+            this.btnOrderManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrderManagement.Name = "btnOrderManagement";
+            this.btnOrderManagement.Size = new System.Drawing.Size(300, 47);
+            this.btnOrderManagement.TabIndex = 3;
+            this.btnOrderManagement.Text = "Quản lý đơn hàng";
+            this.btnOrderManagement.UseVisualStyleBackColor = true;
+            this.btnOrderManagement.Click += new System.EventHandler(this.btnOrderManagement_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 616);
+            this.Controls.Add(this.btnOrderManagement);
             this.Controls.Add(this.btnFinancialManagement);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTable);
@@ -85,6 +98,7 @@
         private System.Windows.Forms.Button btnTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFinancialManagement;
+        private System.Windows.Forms.Button btnOrderManagement;
     }
 }
 
