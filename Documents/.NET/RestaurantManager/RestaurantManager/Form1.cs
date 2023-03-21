@@ -28,5 +28,12 @@ namespace RestaurantManager
             frmOrders od = new frmOrders();
             od.ShowDialog();
         }
+
+        private void btnBillPrinting_Click(object sender, EventArgs e)
+        {
+            frmBill bill = new frmBill("", false);
+            //bill.ShowDialog();
+            bill.Show();
+        }
     }
 }

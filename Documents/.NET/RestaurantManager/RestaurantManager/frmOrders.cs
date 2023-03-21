@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace RestaurantManager
             btnDelete.Enabled = check;
             btnEdit.Enabled = check;
             btnExit.Enabled = check;
+            btnBillPrinting.Enabled = check;
         }
 
         public void getDataOrder()
@@ -43,7 +45,7 @@ namespace RestaurantManager
             string sql = "SELECT * FROM ORDERS";
             dataGridView1.DataSource = db.getData(sql);
         }
-        // ngan OC test
+
         public void getDataBook()
         {
             DBServices db = new DBServices();
@@ -82,6 +84,15 @@ namespace RestaurantManager
             decimal price = decimal.Parse(dt.Rows[0][0].ToString());
             int quantity = int.Parse(dt.Rows[0][1].ToString());
             return price * quantity;
+        }
+
+        public void changed()
+        {
+            string dishId = cbDishID.Text;
+            if (quantityChange)
+            {
+                txtPrice.Text = txtQuantity.Text == "" ? "" : Convert.ToString(getPriceDishs(dishId) * int.Parse(txtQuantity.Text));
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -173,11 +184,7 @@ namespace RestaurantManager
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
-            string dishId = cbDishID.Text;
-            if (quantityChange)
-            {
-                txtPrice.Text = txtQuantity.Text == "" ? "" : Convert.ToString(getPriceDishs(dishId) * int.Parse(txtQuantity.Text));
-            }
+            changed();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -196,6 +203,18 @@ namespace RestaurantManager
             DBServices db = new DBServices();
             db.runQuery(sql);
             getDataOrder();
+        }
+
+        private void cbDishID_SelectedValueChanged(object sender, EventArgs e)
+        {
+            changed();
+        }
+
+        private void btnBillPrinting_Click(object sender, EventArgs e)
+        {
+            string orderId = txtOrderID.Text;
+            frmBill bill = new frmBill(orderId, true);
+            bill.ShowDialog();
         }
     }
 }

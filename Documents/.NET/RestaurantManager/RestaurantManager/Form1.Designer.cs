@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFinancialManagement = new System.Windows.Forms.Button();
             this.btnOrderManagement = new System.Windows.Forms.Button();
+            this.btnBillPrinting = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTable
@@ -76,11 +77,23 @@
             this.btnOrderManagement.UseVisualStyleBackColor = true;
             this.btnOrderManagement.Click += new System.EventHandler(this.btnOrderManagement_Click);
             // 
+            // btnBillPrinting
+            // 
+            this.btnBillPrinting.Location = new System.Drawing.Point(509, 360);
+            this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBillPrinting.Name = "btnBillPrinting";
+            this.btnBillPrinting.Size = new System.Drawing.Size(300, 47);
+            this.btnBillPrinting.TabIndex = 4;
+            this.btnBillPrinting.Text = "In Bill";
+            this.btnBillPrinting.UseVisualStyleBackColor = true;
+            this.btnBillPrinting.Click += new System.EventHandler(this.btnBillPrinting_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 616);
+            this.Controls.Add(this.btnBillPrinting);
             this.Controls.Add(this.btnOrderManagement);
             this.Controls.Add(this.btnFinancialManagement);
             this.Controls.Add(this.label1);
@@ -99,6 +112,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFinancialManagement;
         private System.Windows.Forms.Button btnOrderManagement;
+        private System.Windows.Forms.Button btnBillPrinting;
     }
 }
 

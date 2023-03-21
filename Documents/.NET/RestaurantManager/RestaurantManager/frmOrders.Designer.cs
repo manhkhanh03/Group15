@@ -45,6 +45,7 @@
             this.btnAddNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtPrice = new System.Windows.Forms.TextBox();
+            this.btnBillPrinting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.cbDishID.Name = "cbDishID";
             this.cbDishID.Size = new System.Drawing.Size(394, 24);
             this.cbDishID.TabIndex = 36;
+            this.cbDishID.SelectedValueChanged += new System.EventHandler(this.cbDishID_SelectedValueChanged);
             // 
             // cbBookID
             // 
@@ -133,7 +135,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(432, 490);
+            this.btnExit.Location = new System.Drawing.Point(429, 533);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(133, 59);
@@ -144,7 +146,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(228, 490);
+            this.btnEdit.Location = new System.Drawing.Point(225, 533);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(133, 59);
@@ -155,7 +157,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(14, 490);
+            this.btnCancel.Location = new System.Drawing.Point(11, 533);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(133, 59);
@@ -166,7 +168,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(432, 413);
+            this.btnDelete.Location = new System.Drawing.Point(429, 456);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(133, 59);
@@ -177,7 +179,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(228, 413);
+            this.btnSave.Location = new System.Drawing.Point(225, 456);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 59);
@@ -188,7 +190,7 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(14, 413);
+            this.btnAddNew.Location = new System.Drawing.Point(11, 456);
             this.btnAddNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(133, 59);
@@ -205,7 +207,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(647, 496);
+            this.dataGridView1.Size = new System.Drawing.Size(647, 539);
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
@@ -218,11 +220,23 @@
             this.txtPrice.Size = new System.Drawing.Size(395, 22);
             this.txtPrice.TabIndex = 37;
             // 
+            // btnBillPrinting
+            // 
+            this.btnBillPrinting.Location = new System.Drawing.Point(144, 387);
+            this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBillPrinting.Name = "btnBillPrinting";
+            this.btnBillPrinting.Size = new System.Drawing.Size(287, 50);
+            this.btnBillPrinting.TabIndex = 38;
+            this.btnBillPrinting.Text = "In Bill";
+            this.btnBillPrinting.UseVisualStyleBackColor = true;
+            this.btnBillPrinting.Click += new System.EventHandler(this.btnBillPrinting_Click);
+            // 
             // frmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1274, 574);
+            this.ClientSize = new System.Drawing.Size(1274, 618);
+            this.Controls.Add(this.btnBillPrinting);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.cbDishID);
             this.Controls.Add(this.cbBookID);
@@ -267,5 +281,6 @@
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Button btnBillPrinting;
     }
 }

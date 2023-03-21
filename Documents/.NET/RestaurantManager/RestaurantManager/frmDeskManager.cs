@@ -63,6 +63,13 @@ namespace RestaurantManager
             db.runQuery(sql);
         }
 
+        public string getValue(string query, string numberReturn)
+        {
+            DBServices db = new DBServices();
+            DataTable dt = db.getData(query);
+            return dt.Rows[0][0].ToString() == "" ? numberReturn : dt.Rows[0][0].ToString();
+        }
+
         public void setEnable(bool check)
         {
             txtBookID.Enabled = false;
@@ -124,13 +131,6 @@ namespace RestaurantManager
             setEnable(true);
             txtBookingDate.Clear();
             txtTime.Clear();
-        }
-
-        public string getValue(string query, string numberReturn)
-        {
-            DBServices db = new DBServices(); 
-            DataTable dt = db.getData(query);
-            return dt.Rows[0][0].ToString() == "" ? numberReturn : dt.Rows[0][0].ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
