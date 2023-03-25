@@ -20,13 +20,13 @@ namespace RestaurantManager
         private void btnTable_Click(object sender, EventArgs e)
         {
             frmDeskManager dm = new frmDeskManager();
-            dm.ShowDialog();
+            dm.Show();
         }
 
         private void btnOrderManagement_Click(object sender, EventArgs e)
         {
-            frmOrders od = new frmOrders();
-            od.ShowDialog();
+            frmOrders od = new frmOrders("", true);
+            od.Show();
         }
 
         private void btnBillPrinting_Click(object sender, EventArgs e)

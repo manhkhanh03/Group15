@@ -46,6 +46,11 @@
             this.cbCustomerID = new System.Windows.Forms.ComboBox();
             this.cbTableID = new System.Windows.Forms.ComboBox();
             this.btnStatus = new System.Windows.Forms.Button();
+            this.cbBookingStaff = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnCancelTable = new System.Windows.Forms.Button();
+            this.txtPay = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,17 +58,19 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.Location = new System.Drawing.Point(641, 43);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(707, 599);
+            this.dataGridView1.Size = new System.Drawing.Size(707, 674);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(59, 506);
+            this.btnAddNew.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddNew.Location = new System.Drawing.Point(59, 590);
             this.btnAddNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(133, 59);
@@ -74,7 +81,8 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(273, 506);
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Location = new System.Drawing.Point(273, 590);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 59);
@@ -85,7 +93,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(477, 506);
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Location = new System.Drawing.Point(477, 590);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(133, 59);
@@ -96,7 +105,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(477, 583);
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.Location = new System.Drawing.Point(477, 657);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(133, 59);
@@ -107,7 +117,8 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(273, 583);
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEdit.Location = new System.Drawing.Point(273, 657);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(133, 59);
@@ -118,7 +129,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(59, 583);
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Location = new System.Drawing.Point(59, 657);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(133, 59);
@@ -140,7 +152,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 148);
+            this.label2.Location = new System.Drawing.Point(73, 192);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 16);
@@ -150,7 +162,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 287);
+            this.label3.Location = new System.Drawing.Point(73, 331);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 16);
@@ -160,7 +172,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 218);
+            this.label4.Location = new System.Drawing.Point(73, 262);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 16);
@@ -170,7 +182,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(73, 356);
+            this.label5.Location = new System.Drawing.Point(73, 400);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 16);
@@ -187,7 +199,7 @@
             // 
             // txtBookingDate
             // 
-            this.txtBookingDate.Location = new System.Drawing.Point(215, 278);
+            this.txtBookingDate.Location = new System.Drawing.Point(215, 322);
             this.txtBookingDate.Margin = new System.Windows.Forms.Padding(4);
             this.txtBookingDate.Name = "txtBookingDate";
             this.txtBookingDate.Size = new System.Drawing.Size(395, 22);
@@ -195,7 +207,7 @@
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(215, 347);
+            this.txtTime.Location = new System.Drawing.Point(215, 391);
             this.txtTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(395, 22);
@@ -204,7 +216,7 @@
             // cbCustomerID
             // 
             this.cbCustomerID.FormattingEnabled = true;
-            this.cbCustomerID.Location = new System.Drawing.Point(215, 144);
+            this.cbCustomerID.Location = new System.Drawing.Point(215, 188);
             this.cbCustomerID.Name = "cbCustomerID";
             this.cbCustomerID.Size = new System.Drawing.Size(394, 24);
             this.cbCustomerID.TabIndex = 17;
@@ -212,27 +224,81 @@
             // cbTableID
             // 
             this.cbTableID.FormattingEnabled = true;
-            this.cbTableID.Location = new System.Drawing.Point(215, 210);
+            this.cbTableID.Location = new System.Drawing.Point(215, 254);
             this.cbTableID.Name = "cbTableID";
             this.cbTableID.Size = new System.Drawing.Size(394, 24);
             this.cbTableID.TabIndex = 18;
             // 
             // btnStatus
             // 
-            this.btnStatus.Location = new System.Drawing.Point(189, 411);
+            this.btnStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStatus.Location = new System.Drawing.Point(371, 523);
             this.btnStatus.Margin = new System.Windows.Forms.Padding(4);
             this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(293, 59);
+            this.btnStatus.Size = new System.Drawing.Size(189, 59);
             this.btnStatus.TabIndex = 19;
             this.btnStatus.Text = "Kiểm tra trạng thái bàn";
             this.btnStatus.UseVisualStyleBackColor = true;
             this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
             // 
+            // cbBookingStaff
+            // 
+            this.cbBookingStaff.FormattingEnabled = true;
+            this.cbBookingStaff.Location = new System.Drawing.Point(215, 131);
+            this.cbBookingStaff.Name = "cbBookingStaff";
+            this.cbBookingStaff.Size = new System.Drawing.Size(394, 24);
+            this.cbBookingStaff.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(73, 135);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 16);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Tên nhân viên";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(73, 463);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 16);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Thanh Toán";
+            // 
+            // btnCancelTable
+            // 
+            this.btnCancelTable.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelTable.Location = new System.Drawing.Point(120, 523);
+            this.btnCancelTable.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelTable.Name = "btnCancelTable";
+            this.btnCancelTable.Size = new System.Drawing.Size(189, 59);
+            this.btnCancelTable.TabIndex = 24;
+            this.btnCancelTable.Text = "Hủy đặt bàn";
+            this.btnCancelTable.UseVisualStyleBackColor = true;
+            this.btnCancelTable.Click += new System.EventHandler(this.btnCancelTable_Click);
+            // 
+            // txtPay
+            // 
+            this.txtPay.Location = new System.Drawing.Point(215, 457);
+            this.txtPay.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPay.Name = "txtPay";
+            this.txtPay.Size = new System.Drawing.Size(395, 22);
+            this.txtPay.TabIndex = 25;
+            // 
             // frmDeskManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 677);
+            this.ClientSize = new System.Drawing.Size(1376, 752);
+            this.Controls.Add(this.txtPay);
+            this.Controls.Add(this.btnCancelTable);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cbBookingStaff);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnStatus);
             this.Controls.Add(this.cbTableID);
             this.Controls.Add(this.cbCustomerID);
@@ -281,5 +347,10 @@
         private System.Windows.Forms.ComboBox cbCustomerID;
         private System.Windows.Forms.ComboBox cbTableID;
         private System.Windows.Forms.Button btnStatus;
+        private System.Windows.Forms.ComboBox cbBookingStaff;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnCancelTable;
+        private System.Windows.Forms.TextBox txtPay;
     }
 }
