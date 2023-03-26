@@ -35,5 +35,17 @@ namespace RestaurantManager
             //bill.ShowDialog();
             bill.Show();
         }
+
+        private void btnFood_Click(object sender, EventArgs e)
+        {
+            frmFood food = new frmFood();
+            food.ShowDialog();
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            frmStaff staff = new frmStaff();
+            staff.ShowDialog();
+        }
     }
 }

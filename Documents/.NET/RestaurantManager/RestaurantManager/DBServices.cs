@@ -11,7 +11,8 @@ namespace RestaurantManager
 {
     internal class DBServices
     {
-        private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;User ID=manhkhanh;Password=1234";
+        /*private string conn = @"Data Source=192.168.56.1;Initial Catalog=RestaurantManager;User ID=manhkhanh;Password=1234";*/
+        private string conn = @"Data source= DESKTOP-VNHT20S\SQLEXPRESS; Initial Catalog=RestaurantManager;Integrated security=True";
         private SqlConnection mySqlConnection;
 
         public DBServices()
