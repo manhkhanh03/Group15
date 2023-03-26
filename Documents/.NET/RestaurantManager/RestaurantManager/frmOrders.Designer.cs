@@ -50,6 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtPay = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -279,11 +280,20 @@
             this.label7.TabIndex = 41;
             this.label7.Text = "Thanh toán";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(170, 20);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateTimePicker1.Size = new System.Drawing.Size(391, 22);
+            this.dateTimePicker1.TabIndex = 43;
+            // 
             // frmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1274, 668);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtPay);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbStaffs);
@@ -338,5 +348,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPay;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -252,9 +252,11 @@ namespace RestaurantManager
 
         private void btnBillPrinting_Click(object sender, EventArgs e)
         {
-            string orderId = txtOrderID.Text;
-            frmBill bill = new frmBill(orderId, true);
-            bill.Show();
+            DBServices db = new DBServices();
+            db.querySelect(1, 2, "manh and");
+            //string orderId = txtOrderID.Text;
+            //frmBill bill = new frmBill(orderId, true);
+            //bill.Show();
         }
     }
 }
