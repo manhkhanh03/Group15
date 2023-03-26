@@ -22,8 +22,7 @@ namespace RestaurantManager
         public void getDataTable()
         {
             DBServices db = new DBServices();
-            string sql = "SELECT * FROM VIEWTABLES";
-            dataGridView1.DataSource = db.getData(sql);
+            dataGridView1.DataSource = db.querySelect("VIEWTABLES");
         }
 
         public void getStatusTables()

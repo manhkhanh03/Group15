@@ -40,6 +40,7 @@
             // 
             // btnTable
             // 
+            this.btnTable.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTable.Location = new System.Drawing.Point(107, 200);
             this.btnTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTable.Name = "btnTable";
@@ -61,6 +62,7 @@
             // 
             // btnFinancialManagement
             // 
+            this.btnFinancialManagement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinancialManagement.Location = new System.Drawing.Point(509, 200);
             this.btnFinancialManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFinancialManagement.Name = "btnFinancialManagement";
@@ -71,6 +73,7 @@
             // 
             // btnOrderManagement
             // 
+            this.btnOrderManagement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOrderManagement.Location = new System.Drawing.Point(509, 280);
             this.btnOrderManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrderManagement.Name = "btnOrderManagement";
@@ -82,6 +85,7 @@
             // 
             // btnBillPrinting
             // 
+            this.btnBillPrinting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBillPrinting.Location = new System.Drawing.Point(509, 360);
             this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBillPrinting.Name = "btnBillPrinting";
