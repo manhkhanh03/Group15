@@ -11,8 +11,8 @@ namespace RestaurantManager
 {
     internal class DBServices
     {
-        /*private string conn = @"Data Source=192.168.56.1;Initial Catalog=RestaurantManager;User ID=manhkhanh;Password=1234";*/
-        private string conn = @"Data source= DESKTOP-VNHT20S\SQLEXPRESS; Initial Catalog=RestaurantManager;Integrated security=True";
+        private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;Integrated Security=True";
+
         private SqlConnection mySqlConnection;
 
         public DBServices()
@@ -50,6 +50,68 @@ namespace RestaurantManager
                 MessageBox.Show(ex.Message);
                 return;
             }
+
         }
+
+        /* Truy vấn sql */
+
+        // Select * from 
+        public DataTable querySelect(params object[] ValueQuery)
+        {
+            /* Tham số cần lưu ý 
+             * 1 tham số: tên bảng
+             * 2 tham số: tên thuộc tính (tên cột) muốn select
+             * 3 tham số: nhận 1 câu điều kiện hoàn chỉnh( cả tên cột và giá trị cần so sánh
+             * 4 tham số: nhận tên thuộc tính sư dụng group by
+             */
+            string sql = "";
+
+            switch (ValueQuery.Length)
+            {
+                case 1: 
+                    sql = $"SELECT * FROM {ValueQuery[0]}";
+                    break;
+                case 2:
+                    sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]}";
+                    break;
+                case 3:
+                    //for (int key = 0; key < ValueQuery[2].ToString().Length; key++)
+                    //{
+                    //MessageBox.Show(ValueQuery[2].ToString().IndexOf("and").ToString());
+                    //if (ValueQuery[2].ToString()[key].ToString() != "=" && ValueQuery[2].ToString()[key].ToString() != "AND")
+                    //{
+                    //sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} WHERE {ValueQuery[2]}";
+                    //}
+                    string value = ValueQuery[2].ToString();
+                    switch (value.Contains("=") && value.Contains("AND") && value.Contains("NULL") && value.Contains("IS"))
+                    {
+                        case true:
+                            sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} WHERE {ValueQuery[2]}";
+                            break;
+                        case false:
+                            sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} GROUP BY {ValueQuery[2]}";
+                            break;
+                    }
+                    //}
+                    break;
+                case 4:
+                    sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} WHERE {ValueQuery[2]} " +
+                        $"GROUP BY {ValueQuery[3]}";
+                    break;
+            }
+
+            return getData(sql);
+            //foreach (object key in ValueQuery)
+            //{
+            //    MessageBox.Show(key.ToString());
+            //}
+        }
+
+        // insert into ... values
+
+        // dalete ... 
+
+        //Thủ tục
+
     }
 }
