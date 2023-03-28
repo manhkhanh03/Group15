@@ -75,7 +75,6 @@ namespace RestaurantManager
             string sa = txtSalary.Text;
             string ad = txtAddress.Text;
             string ge = (rbBoy.Checked) ? rbBoy.Text : rbGirl.Text;
-            DateTime Birthday = new DateTime();
 
             if (AddNew)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,17 +29,16 @@ namespace RestaurantManager
         public void getStatusTables()
         {
             DBServices db = new DBServices();
-            string sql = "SELECT STATUS FROM VIEWTABLES " +
-                "GROUP BY STATUS";
             cbStatus.DisplayMember = "Status";
             cbStatus.ValueMember = "Status";
-            cbStatus.DataSource = db.getData(sql);
+            string status = "STATUS";
+            cbStatus.DataSource = db.querySelect("VIEWTABLES", status, status);
         }
 
         public void setEnable(bool check)
         {
             txtTableID.Enabled = false;
-            cbStatus.Enabled = false;
+            cbStatus.Enabled = !check;
             txtSeats.Enabled = !check;
             btnAddNew.Enabled = check;
             btnDelete.Enabled = check;
@@ -101,21 +101,20 @@ namespace RestaurantManager
                 "SELECT @VALUE";
             int tableID = int.Parse(Dm.getValue(query, "1"));
 
+            dynamic obj = new ExpandoObject();
+            obj.tableID = int.Parse(Dm.getValue(query, "1"));
+            obj.seat = int.Parse(txtSeats.Text);
+            obj.status = "off";
             DBServices db = new DBServices();
-            string sql;
 
             if (addNew)
             {
-                sql = "INSERT INTO TABLES VALUES " +
-                    $"({tableID}, {seat}, 'off')";
+                db.queryInsertInto("TABLES", obj);
             }else
             {
                 int id = int.Parse(txtTableID.Text);
-                sql = "UPDATE TABLES SET " +
-                    $"SEATS = {seat} " +
-                    $"WHERE TABLEID = {id}";
+                db.queryUpdate("TABLES", obj, $"TABLEID = {id}");
             }
-            db.runQuery(sql);
             getDataTable();
             cellEnter = true;
         }
@@ -130,9 +129,8 @@ namespace RestaurantManager
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtTableID.Text);
-            string sql = $"DELETE FROM TABLES WHERE TABLEID = {id}";
             DBServices db = new DBServices();
-            db.runQuery(sql);
+            db.queryDelete("TABLES", $"TABLEID = {id}");
             getDataTable();
         }
     }

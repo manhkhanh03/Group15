@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -30,7 +31,7 @@ namespace RestaurantManager
             txtBillId.Enabled = false;
             txtTableNumber.Enabled = false; 
             txtIntoMoney.Enabled = false;
-            txtDatePay.Enabled = true;
+            pkDate.Enabled = true;
             cbBookingDate.Enabled = true;
             //dtGridViewFood.Enabled = false;
             cbCustomerName.Enabled = check;
@@ -47,26 +48,16 @@ namespace RestaurantManager
 
         public void getNameCustomer(bool check)
         {
-            string sql;
-            if(!check)
-            {
-                sql = "SELECT CustomerName from(orders join Bookings on Orders.BookID = Bookings.BookID)" +
-                "join Customers on Customers.CustomerID = Bookings.CustomerID " +
-                "Where  Pay = N'Đã thanh toán' " +
-                "group by CustomerName";
-            }
-            else
-            {
-                sql = "SELECT CustomerName from(orders join Bookings on Orders.BookID = Bookings.BookID)" +
-                "join Customers on Customers.CustomerID = Bookings.CustomerID " +
-                $"Where Orders.OrderID = '{this.orderID}'and Pay = N'Đã thanh toán' " +
-                "group by CustomerName";
-            }
-            
+            string from = "(Orders join Bookings on Orders.BookID = Bookings.BookID) join Customers on Customers.CustomerID = Bookings.CustomerID";
+            string where = "Pay = N'Chưa thanh toán'";
+            string select = "CustomerName";
             DBServices db = new DBServices();
             cbCustomerName.DisplayMember = "CustomerName";
             cbCustomerName.ValueMember = "CustomerID";
-            cbCustomerName.DataSource= db.getData(sql);
+            if (!check)
+                cbCustomerName.DataSource = db.querySelect(from, select, where, select);
+            else
+                cbCustomerName.DataSource = db.querySelect(from, select,where + $" and Orders.OrderID = '{this.orderID}'", select);
         }
 
         public string getOrderID()
@@ -98,13 +89,13 @@ namespace RestaurantManager
 
         public void getDate()
         {
-            string sql = "SELECT bookingdate from orders join Bookings on Orders.BookID = Bookings.BookID " +
-                    $"Where OrderID = '{this.orderID}' " +
-                    "group by bookingdate ";
+            string select = "BOOKINGDATE";
+            string from = "orders join Bookings on Orders.BookID = Bookings.BookID";
+            string where = $"OrderID = '{this.orderID}'";
             DBServices db = new DBServices();
             cbBookingDate.DisplayMember = "BookingDate";
             cbBookingDate.ValueMember = "BookID";
-            cbBookingDate.DataSource = db.getData(sql);
+            cbBookingDate.DataSource = db.querySelect(from, select, where, select);
         }
 
         public string getBookID(string orderId)
@@ -122,13 +113,10 @@ namespace RestaurantManager
         public void getFood(string orderId)
         {
             DBServices db = new DBServices();
-            var sql = "SELECT Orders.OrderID, NameFood, Quantity, orders.Price " +
-                         "FROM (orders JOIN Bookings ON Orders.BookID = Bookings.BookID) " +
-                         "JOIN Foods ON Foods.FoodID = Orders.FoodID " +
-                         $"WHERE Orders.BookID = '{getBookID(orderId)}' " +
-                         "GROUP BY Orders.OrderID, NameFood, Quantity, orders.Price";
-
-            DataTable dt = db.getData(sql);
+            string select = "Orders.OrderID, NameFood, Quantity, orders.Price";
+            string from = "(orders JOIN Bookings ON Orders.BookID = Bookings.BookID) JOIN Foods ON Foods.FoodID = Orders.FoodID";
+            string where = $" Orders.BookID = '{getBookID(orderId)}'";
+            DataTable dt = db.querySelect(from, select, where, select);
 
             listView1.Columns.AddRange(new[]
             {
@@ -153,11 +141,10 @@ namespace RestaurantManager
 
         public void getPaymentStaff()
         {
-            string sql = "SELECT * FROM STAFFS";
             DBServices db = new DBServices();
             cbPaymentStaff.DisplayMember = "NameStaff";
             cbPaymentStaff.ValueMember = "StaffID";
-            cbPaymentStaff.DataSource = db.getData(sql);
+            cbPaymentStaff.DataSource = db.querySelect("STAFFS");
         }
 
         public void handleIntoMoney(string orderId)
@@ -180,16 +167,15 @@ namespace RestaurantManager
 
         public void addBill()
         {
-            int billId = int.Parse(txtBillId.Text);
-            string staffID = cbPaymentStaff.SelectedValue.ToString();
-            string bookID = getBookID(this.orderID);
-            string datePay = txtDatePay.Text;
-            decimal money = decimal.Parse(txtIntoMoney.Text);
+            dynamic obj = new ExpandoObject();
+            obj.billID = int.Parse(txtBillId.Text);
+            obj.datePay = pkDate.Text;
+            obj.money = decimal.Parse(txtIntoMoney.Text);
+            obj.staffID = cbPaymentStaff.SelectedValue.ToString();
+            obj.bookID = getBookID(this.orderID);
 
-            string sql = "INSERT INTO BILLS VALUES " +
-                $"({billId}, '{staffID}', '{bookID}', '{datePay}', {money})";
             DBServices db = new DBServices();
-            db.runQuery(sql);
+            db.queryInsertInto("BILLS", obj);
         }
 
         private void frmBill_Load(object sender, EventArgs e)
@@ -227,17 +213,19 @@ namespace RestaurantManager
 
         private void btnBillPrinting_Click(object sender, EventArgs e)
         {
-            if (txtDatePay.Text != "")
-            {
-                MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo!!");
-                addBill();
-                frmDeskManager dm = new frmDeskManager();
-                dm.setStatusTable(getTableNumber(), "off");
-                setPayBooking();
-                this.Close();
-            }
-            else
-                MessageBox.Show("Vui lòng nhập ngày thanh toán!!", "Thông báo!!");
+            DateTime date = DateTime.Now;
+            MessageBox.Show(pkDate.Text.ToString() + date.ToString());
+            //if (pkDate.Text.ToString() != date.ToString())
+            //{
+            //    MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo!!");
+            //    addBill();
+            //    frmDeskManager dm = new frmDeskManager();
+            //    dm.setStatusTable(getTableNumber(), "off");
+            //    setPayBooking();
+            //    this.Close();
+            //}
+            //else
+            //    MessageBox.Show("Vui lòng nhập ngày thanh toán!!", "Thông báo!!");
         }
 
         private void btnEditBill_Click(object sender, EventArgs e)
@@ -249,11 +237,17 @@ namespace RestaurantManager
 
         public void setPayBooking()
         {
-            string sql = "UPDATE BOOKINGS SET " +
-                "PAY = N'Đã thanh toán' " + 
-                $"WHERE BookID = '{getBookID(this.orderID)}'";
             DBServices db = new DBServices();
-            db.runQuery(sql);        
+            dynamic obj = new ExpandoObject();
+            obj.pay = "Đã thanh toán";
+            string where = $"BookID = '{getBookID(this.orderID)}'";
+            db.queryUpdate("BOOKINGS", obj, where);
+        }
+
+        private void pkDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime date = DateTime.Now;
+            pkDate.MinDate = date;
         }
     }
 }

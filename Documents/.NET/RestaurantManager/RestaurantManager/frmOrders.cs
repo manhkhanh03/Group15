@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,35 +49,31 @@ namespace RestaurantManager
 
         public void getDataOrder()
         {
-            string sql;
-            if (myCheck)
-                 sql = "SELECT OrderID, Orders.StaffID, Orders.BookID, FoodID, Quantity, Price, Pay " +
-                    "from Orders join Bookings on Orders.BookID = Bookings.BookID";
-            else
-                 sql = "SELECT Orders.OrderID, Orders.StaffID, Orders.BookID, FoodID, Quantity, Price, Pay " +
-                    "FROM ORDERS join Bookings on Orders.BookID = Bookings.BookID " +
-                    $"WHERE Orders.BookID = '{this.bookID}' ";
             DBServices db = new DBServices();
-            dataGridView1.DataSource = db.getData(sql);
+            string select = "OrderID, Orders.StaffID, Orders.BookID, FoodID, Quantity, Price, Pay";
+            string from = "Orders join Bookings on Orders.BookID = Bookings.BookID";
+            string where = $"Orders.BookID = '{this.bookID}'";
+            if (myCheck)
+                dataGridView1.DataSource = db.querySelect(from, select);
+            else
+                dataGridView1.DataSource = db.querySelect(from, select, where);
         }
 
         public void getDataBook()
         {
+            string where = " PAY NOT IN (N'Đã thanh toán', N'Hủy đăng ký')";
             DBServices db = new DBServices();
-            string sql = "SELECT * FROM BOOKINGS " +
-                "WHERE Pay NOT IN (N'Đã thanh toán', N'Hủy đăng ký')";
             cbBookID.DisplayMember = "TableID";
             cbBookID.ValueMember = "BookID";
-            cbBookID.DataSource = db.getData(sql);
+            cbBookID.DataSource = db.querySelect("BOOKINGS", "*", where);
         }
 
         public void getDataFoods()
         {
             DBServices db = new DBServices();
-            string sql = "SELECT * FROM FOODS";
             cbFoods.DisplayMember = "NameFood";
             cbFoods.ValueMember = "FoodID";
-            cbFoods.DataSource = db.getData(sql);
+            cbFoods.DataSource = db.querySelect("FOODS");
         }
 
         public decimal getPriceFood(string FoodID)
@@ -91,10 +89,9 @@ namespace RestaurantManager
         public void getStaffs()
         {
             DBServices db = new DBServices();
-            string sql = "SELECT * FROM STAFFS";
             cbStaffs.DisplayMember = "NameStaff";
             cbStaffs.ValueMember = "StaffID";
-            cbStaffs.DataSource = db.getData(sql);
+            cbStaffs.DataSource = db.querySelect("STAFFS");
         }
 
         public void setBillPrinting(bool check)
@@ -180,31 +177,17 @@ namespace RestaurantManager
         private void btnSave_Click(object sender, EventArgs e)
         {
             string id = txtOrderID.Text;
-            string staffId = cbStaffs.SelectedValue.ToString();
-            string bookId = cbBookID.SelectedValue.ToString();
-            string FoodId = cbFoods.SelectedValue.ToString();
-            decimal price = decimal.Parse(txtPrice.Text);
-            int quantity = int.Parse(txtQuantity.Text);
-            string sql;
-
-            if (addNew)
-            {
-                sql = "INSERT INTO ORDERS VALUES " +
-                    $"('{id}', '{staffId}', '{bookId}', '{FoodId}', {quantity}, {price})";
-            }
-            else
-            {
-                sql = "UPDATE ORDERS SET " +
-                    $"STAFFID = '{staffId}', " +
-                    $"BOOKID = '{bookId}', " +
-                    $"FOODID = '{FoodId}', " +
-                    $"QUANTITY = {quantity}, " +
-                    $"PRICE = {price} " +
-                    $"WHERE ORDERID = '{id}'";
-
-            }
+            dynamic obj = new ExpandoObject();
+            obj.orderID = id;
+            obj.staffId = cbStaffs.SelectedValue.ToString();
+            obj.bookId = cbBookID.SelectedValue.ToString();
+            obj.foodID = cbFoods.SelectedValue.ToString();
+            obj.quantity = int.Parse(txtQuantity.Text);
+            obj.price = decimal.Parse(txtPrice.Text);
             DBServices db = new DBServices();
-            db.runQuery(sql);
+            if (addNew) db.queryInsertInto("ORDERS", obj);
+            else db.queryUpdate("ORDERS", obj, $"ORDERID = '{id}'");
+            
             getDataOrder();
 
             cellEnter = true;
@@ -237,11 +220,8 @@ namespace RestaurantManager
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string id = txtOrderID.Text;
-
-            string sql = $"DELETE FROM ORDERS " +
-                $"WHERE ORDERID = '{id}'";
             DBServices db = new DBServices();
-            db.runQuery(sql);
+            db.queryDelete("ORDERS", $"ORDERID = '{id}'");
             getDataOrder();
         }
 
@@ -253,7 +233,12 @@ namespace RestaurantManager
         private void btnBillPrinting_Click(object sender, EventArgs e)
         {
             DBServices db = new DBServices();
-            db.querySelect(1, 2, "manh and");
+
+            dynamic myObject = new ExpandoObject();
+            myObject.name = "manh";
+            myObject.description = "khanh";
+            myObject.type = 14;
+            db.queryDelete("ClassManh");
             //string orderId = txtOrderID.Text;
             //frmBill bill = new frmBill(orderId, true);
             //bill.Show();
