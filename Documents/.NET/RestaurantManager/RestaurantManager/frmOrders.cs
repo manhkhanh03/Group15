@@ -93,7 +93,6 @@ namespace RestaurantManager
         public void setBillPrinting(bool check)
         {
             btnBillPrinting.Enabled = check;
-            btnAddNew.Enabled = check;
             btnEdit.Enabled= check;
         }
 
@@ -171,9 +170,7 @@ namespace RestaurantManager
             DBServices db = new DBServices();
             if (addNew) db.queryInsertInto("ORDERS", obj);
             else db.queryUpdate("ORDERS", obj, $"ORDERID = '{id}'");
-            
             getDataOrder();
-
             cellEnter = true;
             quantityChange = false;
             setEnable(true);
