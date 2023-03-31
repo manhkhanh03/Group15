@@ -29,8 +29,8 @@ namespace RestaurantManager
         public void getStatusTables()
         {
             DBServices db = new DBServices();
-            cbStatus.DisplayMember = "Status";
-            cbStatus.ValueMember = "Status";
+            cbStatus.DisplayMember = "STATUS";
+            cbStatus.ValueMember = "STATUS";
             string status = "STATUS";
             cbStatus.DataSource = db.querySelect("VIEWTABLES", status, status);
         }
@@ -61,29 +61,27 @@ namespace RestaurantManager
             if(cellEnter)
             {
                 int i = e.RowIndex;
-                txtTableID.Text = dataGridView1.Rows[i].Cells["NumberTable"].Value.ToString();
-                txtSeats.Text = dataGridView1.Rows[i].Cells["Seats"].Value.ToString();
-                cbStatus.SelectedValue = dataGridView1.Rows[i].Cells["Status"].Value.ToString();
+                txtTableID.Text = dataGridView1.Rows[i].Cells["NUMBERTABLE"].Value.ToString();
+                txtSeats.Text = dataGridView1.Rows[i].Cells["SEATS"].Value.ToString();
+                cbStatus.SelectedValue = dataGridView1.Rows[i].Cells["STATUS"].Value.ToString();
             }
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            frmDeskManager Dm = new frmDeskManager();
-            string query = "DECLARE @VALUE INT " +
-                "SELECT @VALUE = MAX(TABLEID) + 1 FROM TABLES " +
-                "SELECT @VALUE";
-            txtTableID.Text = Dm.getValue(query, "1");
-            
+            DBServices db = new DBServices();
+            txtTableID.Text = db.queryProcedure("TABLES", "MAX(TABLEID) + 1").ToString();
             addNew = true;
             setEnable(false);
             txtSeats.Clear();
+            cellEnter = false;
             cbStatus.SelectedValue = "off";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             txtTableID.Clear();
+            cellEnter = true;
             setEnable(true);
         }
 
@@ -94,29 +92,26 @@ namespace RestaurantManager
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            frmDeskManager Dm = new frmDeskManager();
-            int seat = int.Parse(txtSeats.Text);
-            string query = "DECLARE @VALUE INT " +
-                "SELECT @VALUE = MAX(TABLEID) + 1 FROM TABLES " +
-                "SELECT @VALUE";
-            int tableID = int.Parse(Dm.getValue(query, "1"));
-
-            dynamic obj = new ExpandoObject();
-            obj.tableID = int.Parse(Dm.getValue(query, "1"));
-            obj.seat = int.Parse(txtSeats.Text);
-            obj.status = "off";
             DBServices db = new DBServices();
+            int tableID = int.Parse(db.queryProcedure("TABLES", "MAX(TABLEID) + 1").ToString());
+            dynamic obj = new ExpandoObject();
+            obj.tableID = txtTableID.Text;
+            obj.seats = int.Parse(txtSeats.Text);
+            obj.status = "off";
 
             if (addNew)
             {
+                obj.tableID = int.Parse(db.queryProcedure("TABLES", "MAX(TABLEID) + 1").ToString());
                 db.queryInsertInto("TABLES", obj);
             }else
             {
                 int id = int.Parse(txtTableID.Text);
+                obj.status = cbStatus.Text;
                 db.queryUpdate("TABLES", obj, $"TABLEID = {id}");
             }
             getDataTable();
             cellEnter = true;
+            setEnable(true);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

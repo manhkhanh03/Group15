@@ -34,16 +34,16 @@ namespace RestaurantManager
         public void getDataCustomers()
         {
             DBServices db = new DBServices();
-            cbCustomerID.DisplayMember = "CustomerName";
-            cbCustomerID.ValueMember = "CustomerID";
+            cbCustomerID.DisplayMember = "CUSTOMERNAME";
+            cbCustomerID.ValueMember = "CUSTOMERID";
             cbCustomerID.DataSource = db.querySelect("CUSTOMERS");
         }
 
         public void getDataTable()
         {
             DBServices db = new DBServices();
-            cbTableID.DisplayMember = "TableID";
-            cbTableID.ValueMember = "TableID";
+            cbTableID.DisplayMember = "TABLEID";
+            cbTableID.ValueMember = "TABLEID";
             cbTableID.DataSource = db.querySelect("TABLES");
         }
 
@@ -65,8 +65,8 @@ namespace RestaurantManager
         public void getStaffs()
         {
             DBServices db = new DBServices();
-            cbBookingStaff.DisplayMember = "NameStaff";
-            cbBookingStaff.ValueMember = "StaffID";
+            cbBookingStaff.DisplayMember = "NAMESTAFF";
+            cbBookingStaff.ValueMember = "STAFFID";
             cbBookingStaff.DataSource = db.querySelect("STAFFS");
         }
 
@@ -105,25 +105,26 @@ namespace RestaurantManager
                 try
                 {
                     int i = e.RowIndex;
-                    txtBookID.Text = dataGridView1.Rows[i].Cells["BookID"].Value.ToString();
-                    cbBookingStaff.SelectedValue = dataGridView1.Rows[i].Cells["StaffID"].Value.ToString();
-                    cbCustomerID.SelectedValue = dataGridView1.Rows[i].Cells["CustomerID"].Value.ToString();
-                    cbTableID.SelectedValue = dataGridView1.Rows[i].Cells["TableID"].Value.ToString();
-                    pkDate.Value = Convert.ToDateTime(dataGridView1.Rows[i].Cells["BOOKINGDATE"].Value).Date;
-                    txtPay.Text = dataGridView1.Rows[i].Cells["Pay"].Value.ToString();
-
+                    txtBookID.Text = dataGridView1.Rows[i].Cells["BOOKID"].Value.ToString();
+                    cbBookingStaff.SelectedValue = dataGridView1.Rows[i].Cells["STAFFID"].Value.ToString();
+                    cbCustomerID.SelectedValue = dataGridView1.Rows[i].Cells["CUSTOMERID"].Value.ToString();
+                    cbTableID.Text = Convert.ToString(dataGridView1.Rows[i].Cells["TABLEID"].Value);
+                    DateTime bookingDate;
+                    if (DateTime.TryParse(dataGridView1.Rows[i].Cells["BOOKINGDATE"].Value?.ToString(), out bookingDate))
+                        pkDate.Value = bookingDate.Date;
+                    else
+                        pkDate.Value = DateTime.Now.Date;
                     string timeString = dataGridView1.Rows[i].Cells["BOOKINGTIME"].Value.ToString();
                     DateTime timeValue;
                     bool isValidTime = DateTime.TryParseExact(timeString, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeValue);
 
                     if (isValidTime)
-                    {
                         pkTime.Value = timeValue;
-                    }
+                    txtPay.Text = dataGridView1.Rows[i].Cells["PAY"].Value.ToString();   
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -135,12 +136,10 @@ namespace RestaurantManager
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            string sql =
-                        "declare @idBooking int;\n" +
-                        "exec getIdBooking @idBooking out;\n" +
-                        "select @idBooking";
-
-            txtBookID.Text = "Book" + getValue(sql, "1");
+            string select = "SUBSTRING(MAX(BOOKID), 5, 2) + 1";
+            DBServices db = new DBServices();
+            int myNumber = int.Parse(db.queryProcedure("BOOKINGS", select).ToString());
+            txtBookID.Text = "Book" + (myNumber < 10 ? "0" + myNumber.ToString() : myNumber.ToString());
             txtPay.Text = "Chưa thanh toán"; // chưa thanh toán
             addNew = true;
             setEnable(true);
@@ -152,12 +151,8 @@ namespace RestaurantManager
         private void btnSave_Click(object sender, EventArgs e)
         {
             int tableID = int.Parse(cbTableID.Text);
-            string query = $"declare @table int = {tableID}; " +
-                "if exists (select * from tables where @table = tableid and Status = 'off') " +
-                    "select 1; " +
-                "else " +
-                    "select 0";
-            int TId = int.Parse(getValue(query, "0"));
+            DBServices db = new DBServices();
+            string TId = db.queryProcedure("TABLES", "STATUS", $"TABLEID = {tableID}").ToString();
             string bookID = txtBookID.Text;
 
             dynamic obj = new ExpandoObject();
@@ -169,15 +164,14 @@ namespace RestaurantManager
             obj.time = pkTime.Text;
             obj.pay = txtPay.Text;
 
-            DBServices db = new DBServices();
-
             if (addNew)
             {
-                if (TId == 1)
+                if (TId.Contains("off"))
                 {
                     db.queryInsertInto("BOOKINGS", obj);
                     getDataBook();
                     getDataCustomers();
+                    setStatusTable(tableID, "on");
                 }
                 else MessageBox.Show("Bàn đã được đặt!! Hãy thử đặt bàn khác.", "Thông báo");
             }
@@ -190,9 +184,6 @@ namespace RestaurantManager
                 //db.runQuery(sql);
                 getDataBook();
             }
-
-            setStatusTable(tableID, "on");
-
             addNew = false;
             setEnable(false);
             cellEnter = true;
@@ -246,8 +237,8 @@ namespace RestaurantManager
         {
             //pkDate.MinDate = DateTime.Now;
             //int dayofmonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            DateTime date = DateTime.Now;
-            pkDate.MinDate= date;
+            //DateTime date = DateTime.Now;
+            //pkDate.MinDate= date;
         }
     }
 }

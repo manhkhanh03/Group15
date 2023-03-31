@@ -46,7 +46,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.cbPaymentStaff = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.pkDate = new System.Windows.Forms.DateTimePicker();
+            this.pkDatePay = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -219,25 +219,25 @@
             this.label9.TabIndex = 24;
             this.label9.Text = "NV thanh toán";
             // 
-            // pkDate
+            // pkDatePay
             // 
-            this.pkDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pkDate.Location = new System.Drawing.Point(180, 325);
-            this.pkDate.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
-            this.pkDate.MinDate = new System.DateTime(2023, 3, 13, 0, 0, 0, 0);
-            this.pkDate.Name = "pkDate";
-            this.pkDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pkDate.Size = new System.Drawing.Size(476, 22);
-            this.pkDate.TabIndex = 26;
-            this.pkDate.Value = new System.DateTime(2023, 3, 28, 10, 47, 57, 0);
-            this.pkDate.ValueChanged += new System.EventHandler(this.pkDate_ValueChanged);
+            this.pkDatePay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.pkDatePay.Location = new System.Drawing.Point(180, 325);
+            this.pkDatePay.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.pkDatePay.MinDate = new System.DateTime(2023, 3, 13, 0, 0, 0, 0);
+            this.pkDatePay.Name = "pkDatePay";
+            this.pkDatePay.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pkDatePay.Size = new System.Drawing.Size(476, 22);
+            this.pkDatePay.TabIndex = 26;
+            this.pkDatePay.Value = new System.DateTime(2023, 3, 28, 10, 47, 57, 0);
+            this.pkDatePay.ValueChanged += new System.EventHandler(this.pkDate_ValueChanged);
             // 
             // frmBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 803);
-            this.Controls.Add(this.pkDate);
+            this.Controls.Add(this.pkDatePay);
             this.Controls.Add(this.cbPaymentStaff);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.listView1);
@@ -284,6 +284,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox cbPaymentStaff;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker pkDate;
+        private System.Windows.Forms.DateTimePicker pkDatePay;
     }
 }

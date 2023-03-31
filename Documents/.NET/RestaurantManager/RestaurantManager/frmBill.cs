@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -31,7 +32,7 @@ namespace RestaurantManager
             txtBillId.Enabled = false;
             txtTableNumber.Enabled = false; 
             txtIntoMoney.Enabled = false;
-            pkDate.Enabled = true;
+            pkDatePay.Enabled = true;
             cbBookingDate.Enabled = true;
             //dtGridViewFood.Enabled = false;
             cbCustomerName.Enabled = check;
@@ -39,50 +40,44 @@ namespace RestaurantManager
 
         public void newBill()
         {
-            string sql = "declare @id int " +
-                "select @id = max(billid) + 1 from Bills " +
-                "select @id";
-            frmDeskManager dm = new frmDeskManager();
-            txtBillId.Text = dm.getValue(sql, "1");
+            DBServices db = new DBServices();
+            int myNumber = Convert.ToInt32(Convert.ToDecimal(db.queryProcedure("Bills", "max(billid) + 1")));
+            txtBillId.Text = myNumber < 10 ? "000" + myNumber.ToString() : "00" + myNumber.ToString();
         }
 
         public void getNameCustomer(bool check)
         {
-            string from = "(Orders join Bookings on Orders.BookID = Bookings.BookID) join Customers on Customers.CustomerID = Bookings.CustomerID";
-            string where = "Pay = N'Chưa thanh toán'";
-            string select = "CustomerName";
+            string from = "(ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID) JOIN CUSTOMERS ON CUSTOMERS.CUSTOMERID = BOOKINGS.CUSTOMERID";
+            string where = "PAY = N'Chưa thanh toán'";
+            string select = "CUSTOMERS.CUSTOMERNAME";
             DBServices db = new DBServices();
-            cbCustomerName.DisplayMember = "CustomerName";
-            cbCustomerName.ValueMember = "CustomerID";
+            cbCustomerName.DisplayMember = "CUSTOMERNAME";
+            cbCustomerName.ValueMember = "CUSTOMERID";
             if (!check)
                 cbCustomerName.DataSource = db.querySelect(from, select, where, select);
             else
-                cbCustomerName.DataSource = db.querySelect(from, select,where + $" and Orders.OrderID = '{this.orderID}'", select);
+                cbCustomerName.DataSource = db.querySelect(from, select, $"{where} AND ORDERS.ORDERID= '{this.orderID}'", select);
         }
 
         public string getOrderID()
         {
-            string sql = "declare @id varchar(10) " +
-                "SELECT @id = Orders.OrderID from(orders join Bookings on Orders.BookID = Bookings.BookID)" +
-                "join Customers on Customers.CustomerID = Bookings.CustomerID " +
-                $"Where Customers.CustomerName = N'{cbCustomerName.Text}' " +
-                "group by Orders.OrderID " +
-                "select @id";
-            frmDeskManager dm = new frmDeskManager();
-            return dm.getValue(sql, "");
+            string from = "(ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID) " +
+                "JOIN CUSTOMERS ON CUSTOMERS.CUSTOMERID = BOOKINGS.CUSTOMERID ";
+            string where = $"CUSTOMERS.CUSTOMERNAME= N'{cbCustomerName.Text}'";
+            string select = "ORDERS.ORDERID";
+            DBServices db = new DBServices();
+
+            return db.queryProcedure(from, select, where, select).ToString();
         }
 
         public int getTableNumber()
         {
             if (this.orderID != null && this.orderID != "")
             {
-                string sql = "declare @tableNumber int " +
-                    "SELECT TableID from orders join Bookings on Orders.BookID = Bookings.BookID " +
-                    $"Where OrderID = '{this.orderID}' " +
-                    "group by TableID " +
-                    "select @tablenumber";
-                frmDeskManager dm = new frmDeskManager();
-                return int.Parse(dm.getValue(sql, ""));
+                string from = "ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID";
+                string where = $"ORDERID = '{this.orderID}'";
+                DBServices db = new DBServices();
+                return Convert.ToInt32(db.queryProcedure(from, "TABLEID", where, "TABLEID"));
             }
             return 0;
         }
@@ -90,32 +85,27 @@ namespace RestaurantManager
         public void getDate()
         {
             string select = "BOOKINGDATE";
-            string from = "orders join Bookings on Orders.BookID = Bookings.BookID";
-            string where = $"OrderID = '{this.orderID}'";
+            string from = "ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID";
+            string where = $"ORDERID = '{this.orderID}'";
             DBServices db = new DBServices();
-            cbBookingDate.DisplayMember = "BookingDate";
-            cbBookingDate.ValueMember = "BookID";
+            cbBookingDate.DisplayMember = "BOOKINGDATE";
+            cbBookingDate.ValueMember = "BOOKID";
             cbBookingDate.DataSource = db.querySelect(from, select, where, select);
         }
 
         public string getBookID(string orderId)
         {
-            string sql = "declare @bookid varchar(10) "+
-                "SELECT @bookid = BookID " +
-                    "from Orders " +
-                    $"where Orders.OrderID = '{orderId}' " +
-                    "group by BookId " +
-                    "select @bookid";
-            frmDeskManager dm = new frmDeskManager();
-            return dm.getValue(sql, "");
+            DBServices db = new DBServices();
+            string where = $"ORDERS.ORDERID= '{orderId}' ";
+            return db.queryProcedure("ORDERS", "BOOKID", where, "BOOKID").ToString();
         }
 
         public void getFood(string orderId)
         {
             DBServices db = new DBServices();
-            string select = "Orders.OrderID, NameFood, Quantity, orders.Price";
-            string from = "(orders JOIN Bookings ON Orders.BookID = Bookings.BookID) JOIN Foods ON Foods.FoodID = Orders.FoodID";
-            string where = $" Orders.BookID = '{getBookID(orderId)}'";
+            string select = "ORDERS.ORDERID, NAMEFOOD, QUANTITY, ORDERS.PRICE";
+            string from = "(ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID) JOIN FOODS ON FOODS.FOODID = ORDERS.FOODID";
+            string where = $" ORDERS.BOOKID= '{getBookID(orderId)}'";
             DataTable dt = db.querySelect(from, select, where, select);
 
             listView1.Columns.AddRange(new[]
@@ -142,25 +132,23 @@ namespace RestaurantManager
         public void getPaymentStaff()
         {
             DBServices db = new DBServices();
-            cbPaymentStaff.DisplayMember = "NameStaff";
-            cbPaymentStaff.ValueMember = "StaffID";
+            cbPaymentStaff.DisplayMember = "NAMESTAFF";
+            cbPaymentStaff.ValueMember = "STAFFID";
             cbPaymentStaff.DataSource = db.querySelect("STAFFS");
         }
 
         public void handleIntoMoney(string orderId)
         {
-            string sql = "DECLARE @Prices VARCHAR(MAX) " +
-                    "SELECT @Prices = COALESCE(@Prices + ',', '') + CONVERT(VARCHAR, price) " +
-                    "FROM Orders " +
-                    $"Where Orders.BookID = '{getBookID(orderId)}' " +
-                    "Select @Prices";
-            frmDeskManager dm = new frmDeskManager();
-            string valueReturn = dm.getValue(sql, "0");
+            DBServices db = new DBServices();
+            string from = "ORDERS";
+            string where = $"ORDERS.BOOKID= '{getBookID(orderId)}'";
+            string select = "STRING_AGG(CONVERT(VARCHAR, PRICE), ',')";
+            string valueReturn = db.queryProcedure(from, select, where).ToString();
             string[] strPrices = valueReturn.Split(',');
             decimal dcmPrices = 0;
             foreach(string key in strPrices)
             {
-                dcmPrices += Convert.ToDecimal(key);
+                dcmPrices += Convert.ToDecimal(key.ToString());
             }
             txtIntoMoney.Text = dcmPrices.ToString();
         }
@@ -169,11 +157,10 @@ namespace RestaurantManager
         {
             dynamic obj = new ExpandoObject();
             obj.billID = int.Parse(txtBillId.Text);
-            obj.datePay = pkDate.Text;
-            obj.money = decimal.Parse(txtIntoMoney.Text);
             obj.staffID = cbPaymentStaff.SelectedValue.ToString();
             obj.bookID = getBookID(this.orderID);
-
+            obj.datePay = pkDatePay.Text;
+            obj.money = decimal.Parse(txtIntoMoney.Text);
             DBServices db = new DBServices();
             db.queryInsertInto("BILLS", obj);
         }
@@ -213,19 +200,16 @@ namespace RestaurantManager
 
         private void btnBillPrinting_Click(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-            MessageBox.Show(pkDate.Text.ToString() + date.ToString());
-            //if (pkDate.Text.ToString() != date.ToString())
-            //{
-            //    MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo!!");
-            //    addBill();
-            //    frmDeskManager dm = new frmDeskManager();
-            //    dm.setStatusTable(getTableNumber(), "off");
-            //    setPayBooking();
-            //    this.Close();
-            //}
-            //else
-            //    MessageBox.Show("Vui lòng nhập ngày thanh toán!!", "Thông báo!!");
+            DialogResult result = MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo!!", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                addBill();
+                frmDeskManager dm = new frmDeskManager();
+                dm.setStatusTable(getTableNumber(), "off");
+                setPayBooking();
+                this.Close();
+            }
+            else MessageBox.Show("Hóa đơn đã được hủy!!", "Thông báo!!");
         }
 
         private void btnEditBill_Click(object sender, EventArgs e)
@@ -247,7 +231,7 @@ namespace RestaurantManager
         private void pkDate_ValueChanged(object sender, EventArgs e)
         {
             DateTime date = DateTime.Now;
-            pkDate.MinDate = date;
+            pkDatePay.MinDate = date;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Dynamic;
 using System.Globalization;
+using System.Collections;
 
 namespace RestaurantManager
 {
@@ -68,7 +69,6 @@ namespace RestaurantManager
              * 5 tham số: ghi đầy đủ tên cột muốn sắp xếp và kiểu sắp xếp (desc hay asc)
              */
             string sql = "";
-
             switch (ValueQuery.Length)
             {
                 case 1: 
@@ -121,17 +121,16 @@ namespace RestaurantManager
                 switch (prop.Value.GetType().ToString())
                 {
                     case "System.String":
-                        sql += i < index - 1 ? $"'{attribute[i]}', " : $"'{attribute[i]}') ";
+                        sql += i < index - 1 ? $"N'{attribute[i]}', " : $"N'{attribute[i]}') ";
                         break;
                     case "System.Int32":
                     case "System.Decimal":
                         sql += i < index - 1 ? $"{attribute[i]}, " : $"{attribute[i]}) ";
                         break;
                 }
+                
                 i++;
             }
-            MessageBox.Show(sql);
-
             runQuery(sql); 
         }
 
@@ -184,6 +183,69 @@ namespace RestaurantManager
         }
 
         //Thủ tục
+        public object queryProcedure(params object[] valueQuery)
+        {
+            /* Danh sách tham số
+             * 1: tên bảng
+             * 2: thuộc tính(tên cột, max, count, ... ) sau select
+             * 3: câu điều kiện where đầy đủ hoặc câu group by đầy đủ
+             * 4: cả điều kiện và group by
+             */
+            /*create proc queryProcedure
+            @TableName varchar(max), @select nvarchar(max)
+            , @where nvarchar(max), @groupBy nvarchar(max)
 
+            AS 
+            BEGIN
+	            DECLARE @sql nvarchar(max)
+	
+	            DECLARE @ResultTable TABLE (VALUE_PROC nvarchar(max))
+	            SET @sql = N'SELECT  ' + @select + ' FROM ' + @tableName 
+	            IF LEN(@where) > 0 
+		            SET @sql += N' WHERE ' + @where
+	            ELSE IF  LEN(@groupBy) > 0
+		            SET @sql +=  N' GROUP BY ' + @groupBy
+	            IF LEN(@groupBy) > 0 AND LEN(@where) > 0
+		            SET @sql +=  N' GROUP BY ' + @groupBy
+	            PRINT @SQL
+	            INSERT INTO @ResultTable
+	            EXECUTE sp_executesql @sql
+	            declare @VALUE nvarchar(max)
+	            SELECT @VALUE = VALUE_PROC FROM @ResultTable
+	            IF @VALUE is null 
+	            begin
+		            delete from @ResultTable
+		            insert into @ResultTable(VALUE_PROC) values (1)
+	            end
+	            SELECT VALUE_PROC FROM @ResultTable
+            end*/
+            string sql = "";
+            switch (valueQuery.Length)
+            {
+                case 1:
+                    sql = $"EXEC QUERYPROCEDURE '{valueQuery[0]}','','',''";
+                    break;
+                case 2:
+                    sql = $"EXEC QUERYPROCEDURE '{valueQuery[0]}',\"{valueQuery[1]}\",'',''";
+                    break;
+                case 3:
+                    string value = valueQuery[2].ToString();
+                    switch (value.Contains("=") || value.Contains("AND") || value.Contains("NULL") || value.Contains("IN") || value.Contains("NOT"))
+                    {
+                        case true:
+                            sql = $"EXEC QUERYPROCEDURE '{valueQuery[0]}',\"{valueQuery[1]}\",\"{valueQuery[2]}\",''";
+                            break;
+                        case false:
+                            sql = $"EXEC QUERYPROCEDURE '{valueQuery[0]}',\"{valueQuery[1]}\",'','{valueQuery[2]}'";
+                            break;
+                    }
+                    break;
+                case 4:
+                    sql = $"EXEC QUERYPROCEDURE '{valueQuery[0]}',\"{valueQuery[1]}\",\"{valueQuery[2]}\",'{valueQuery[3]}'";
+                    break;
+            }
+            DataTable dt = getData(sql);
+            return dt.Rows[0][0].ToString(); //== "" ? numberReturn : dt.Rows[0][0].ToString();
+        }
     }
 }

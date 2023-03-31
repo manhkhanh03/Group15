@@ -34,7 +34,7 @@ namespace RestaurantManager
             txtOrderID.Enabled = false;
             txtPrice.Enabled = false;
             txtPay.Enabled = false;
-            txtQuantity.Enabled = !check;
+            txtQuantity.Enabled = false;
             btnSave.Enabled = !check;
             cbBookID.Enabled = !check;
             cbStaffs.Enabled = !check;
@@ -50,9 +50,9 @@ namespace RestaurantManager
         public void getDataOrder()
         {
             DBServices db = new DBServices();
-            string select = "OrderID, Orders.StaffID, Orders.BookID, FoodID, Quantity, Price, Pay";
-            string from = "Orders join Bookings on Orders.BookID = Bookings.BookID";
-            string where = $"Orders.BookID = '{this.bookID}'";
+            string select = "ORDERID, ORDERS.STAFFID, ORDERS.BOOKID, FOODID, QUANTITY, PRICE, PAY";
+            string from = "ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID";
+            string where = $"ORDERS.BOOKID = '{this.bookID}'";
             if (myCheck)
                 dataGridView1.DataSource = db.querySelect(from, select);
             else
@@ -63,34 +63,30 @@ namespace RestaurantManager
         {
             string where = " PAY NOT IN (N'Đã thanh toán', N'Hủy đăng ký')";
             DBServices db = new DBServices();
-            cbBookID.DisplayMember = "TableID";
-            cbBookID.ValueMember = "BookID";
+            cbBookID.DisplayMember = "TABLEID";
+            cbBookID.ValueMember = "BOOKID";
             cbBookID.DataSource = db.querySelect("BOOKINGS", "*", where);
         }
 
         public void getDataFoods()
         {
             DBServices db = new DBServices();
-            cbFoods.DisplayMember = "NameFood";
-            cbFoods.ValueMember = "FoodID";
+            cbFoods.DisplayMember = "NAMEFOOD";
+            cbFoods.ValueMember = "FOODID";
             cbFoods.DataSource = db.querySelect("FOODS");
         }
 
         public decimal getPriceFood(string FoodID)
         {
-            string sql = "declare @price decimal(10, 3) " +
-                    $"exec getPriceFood @price out, {FoodID} " +
-                    "select @price";
             DBServices db = new DBServices();
-            DataTable dt = db.getData(sql);
-            return decimal.Parse(dt.Rows[0][0].ToString());
+            return decimal.Parse(db.queryProcedure("FOODS", "PRICE", $"FOODID = '{FoodID}' ").ToString());
         } 
 
         public void getStaffs()
         {
             DBServices db = new DBServices();
-            cbStaffs.DisplayMember = "NameStaff";
-            cbStaffs.ValueMember = "StaffID";
+            cbStaffs.DisplayMember = "NAMESTAFF";
+            cbStaffs.ValueMember = "STAFFID";
             cbStaffs.DataSource = db.querySelect("STAFFS");
         }
 
@@ -100,18 +96,6 @@ namespace RestaurantManager
             btnAddNew.Enabled = check;
             btnEdit.Enabled= check;
         }
-
-        //public decimal getTotalPrice(string FoodID)
-        //{
-        //    string sql = "declare @price decimal(10, 2), @quantity int " +
-        //            $"exec getTotalPrice @price out, @quantity out, {FoodID} " +
-        //            "select @price, @quantity";
-        //    DBServices db = new DBServices();
-        //    DataTable dt = db.getData(sql);
-        //    decimal price = decimal.Parse(dt.Rows[0][0].ToString());
-        //    int quantity = int.Parse(dt.Rows[0][1].ToString());
-        //    return price * quantity;
-        //}
 
         public void changed()
         {
@@ -141,13 +125,13 @@ namespace RestaurantManager
             if(cellEnter)
             {
                 int i = e.RowIndex;
-                txtOrderID.Text = dataGridView1.Rows[i].Cells["OrderID"].Value.ToString();
-                cbStaffs.SelectedValue = dataGridView1.Rows[i].Cells["StaffID"].Value.ToString();
-                txtPrice.Text = dataGridView1.Rows[i].Cells["Price"].Value.ToString();
-                txtQuantity.Text = dataGridView1.Rows[i].Cells["Quantity"].Value.ToString();
-                cbBookID.SelectedValue = dataGridView1.Rows[i].Cells["BookID"].Value.ToString();
-                cbFoods.SelectedValue = dataGridView1.Rows[i].Cells["FoodID"].Value.ToString();
-                txtPay.Text = dataGridView1.Rows[i].Cells["Pay"].Value.ToString();
+                txtOrderID.Text = dataGridView1.Rows[i].Cells["ORDERID"].Value.ToString();
+                cbStaffs.SelectedValue = dataGridView1.Rows[i].Cells["STAFFID"].Value.ToString();
+                txtPrice.Text = dataGridView1.Rows[i].Cells["PRICE"].Value.ToString();
+                txtQuantity.Text = dataGridView1.Rows[i].Cells["QUANTITY"].Value.ToString();
+                cbBookID.SelectedValue = dataGridView1.Rows[i].Cells["BOOKID"].Value.ToString();
+                cbFoods.SelectedValue = dataGridView1.Rows[i].Cells["FOODID"].Value.ToString();
+                txtPay.Text = dataGridView1.Rows[i].Cells["PAY"].Value.ToString();
                 if(txtPay.Text == "Đã thanh toán") setBillPrinting(false);
                 else setBillPrinting(true);
             }
@@ -160,14 +144,14 @@ namespace RestaurantManager
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            frmDeskManager Dm = new frmDeskManager();
-            string query = "DECLARE @VALUE INT " +
-                "SELECT @VALUE = SUBSTRING(MAX(ORDERID), 3, 2) + 1 FROM ORDERS " +
-                "SELECT @VALUE";
-            txtOrderID.Text = "OD" + Dm.getValue(query, "1");
+            DBServices db  = new DBServices();
+            decimal result = Convert.ToDecimal(db.queryProcedure("ORDERS", "SUBSTRING(MAX(ORDERID), 3, 2) + 1"));
+            int myNumber = Convert.ToInt32(result);
+
+            txtOrderID.Text = "OD" + (myNumber < 10 ? 0 + myNumber.ToString() : myNumber.ToString());
             txtPrice.Clear();
             txtQuantity.Clear();
-            
+
             addNew = true;
             setEnable(false);
             cellEnter = false;
@@ -193,6 +177,7 @@ namespace RestaurantManager
             cellEnter = true;
             quantityChange = false;
             setEnable(true);
+            txtQuantity.Enabled = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -228,20 +213,14 @@ namespace RestaurantManager
         private void cbDishID_SelectedValueChanged(object sender, EventArgs e)
         {
             changed();
+            if (addNew) txtQuantity.Enabled = true;
         }
 
         private void btnBillPrinting_Click(object sender, EventArgs e)
         {
-            DBServices db = new DBServices();
-
-            dynamic myObject = new ExpandoObject();
-            myObject.name = "manh";
-            myObject.description = "khanh";
-            myObject.type = 14;
-            db.queryDelete("ClassManh");
-            //string orderId = txtOrderID.Text;
-            //frmBill bill = new frmBill(orderId, true);
-            //bill.Show();
+            string orderId = txtOrderID.Text;
+            frmBill bill = new frmBill(orderId, true);
+            bill.Show();
         }
     }
 }
