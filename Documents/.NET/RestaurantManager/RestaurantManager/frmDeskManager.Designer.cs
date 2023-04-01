@@ -41,8 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtBookID = new System.Windows.Forms.TextBox();
-            this.txtBookingDate = new System.Windows.Forms.TextBox();
-            this.txtTime = new System.Windows.Forms.TextBox();
             this.cbCustomerID = new System.Windows.Forms.ComboBox();
             this.cbTableID = new System.Windows.Forms.ComboBox();
             this.btnStatus = new System.Windows.Forms.Button();
@@ -51,6 +49,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancelTable = new System.Windows.Forms.Button();
             this.txtPay = new System.Windows.Forms.TextBox();
+            this.pkDate = new System.Windows.Forms.DateTimePicker();
+            this.pkTime = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,22 +197,6 @@
             this.txtBookID.Size = new System.Drawing.Size(395, 22);
             this.txtBookID.TabIndex = 12;
             // 
-            // txtBookingDate
-            // 
-            this.txtBookingDate.Location = new System.Drawing.Point(215, 322);
-            this.txtBookingDate.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBookingDate.Name = "txtBookingDate";
-            this.txtBookingDate.Size = new System.Drawing.Size(395, 22);
-            this.txtBookingDate.TabIndex = 15;
-            // 
-            // txtTime
-            // 
-            this.txtTime.Location = new System.Drawing.Point(215, 391);
-            this.txtTime.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(395, 22);
-            this.txtTime.TabIndex = 16;
-            // 
             // cbCustomerID
             // 
             this.cbCustomerID.FormattingEnabled = true;
@@ -289,11 +273,38 @@
             this.txtPay.Size = new System.Drawing.Size(395, 22);
             this.txtPay.TabIndex = 25;
             // 
+            // pkDate
+            // 
+            this.pkDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.pkDate.Location = new System.Drawing.Point(217, 325);
+            this.pkDate.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.pkDate.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.pkDate.Name = "pkDate";
+            this.pkDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pkDate.Size = new System.Drawing.Size(393, 22);
+            this.pkDate.TabIndex = 26;
+            this.pkDate.Value = new System.DateTime(2023, 3, 28, 8, 40, 4, 0);
+            this.pkDate.ValueChanged += new System.EventHandler(this.pkDate_ValueChanged);
+            // 
+            // pkTime
+            // 
+            this.pkTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.pkTime.Location = new System.Drawing.Point(217, 394);
+            this.pkTime.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.pkTime.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.pkTime.Name = "pkTime";
+            this.pkTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pkTime.Size = new System.Drawing.Size(393, 22);
+            this.pkTime.TabIndex = 27;
+            this.pkTime.Value = new System.DateTime(2023, 3, 28, 8, 40, 4, 0);
+            // 
             // frmDeskManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1376, 752);
+            this.Controls.Add(this.pkTime);
+            this.Controls.Add(this.pkDate);
             this.Controls.Add(this.txtPay);
             this.Controls.Add(this.btnCancelTable);
             this.Controls.Add(this.label7);
@@ -302,8 +313,6 @@
             this.Controls.Add(this.btnStatus);
             this.Controls.Add(this.cbTableID);
             this.Controls.Add(this.cbCustomerID);
-            this.Controls.Add(this.txtTime);
-            this.Controls.Add(this.txtBookingDate);
             this.Controls.Add(this.txtBookID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -342,8 +351,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBookID;
-        private System.Windows.Forms.TextBox txtBookingDate;
-        private System.Windows.Forms.TextBox txtTime;
         private System.Windows.Forms.ComboBox cbCustomerID;
         private System.Windows.Forms.ComboBox cbTableID;
         private System.Windows.Forms.Button btnStatus;
@@ -352,5 +359,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCancelTable;
         private System.Windows.Forms.TextBox txtPay;
+        private System.Windows.Forms.DateTimePicker pkDate;
+        private System.Windows.Forms.DateTimePicker pkTime;
     }
 }

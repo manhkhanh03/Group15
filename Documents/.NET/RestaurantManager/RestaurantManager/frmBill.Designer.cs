@@ -40,13 +40,13 @@
             this.cbCustomerName = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtTableNumber = new System.Windows.Forms.TextBox();
-            this.txtDatePay = new System.Windows.Forms.TextBox();
             this.btnBillPrinting = new System.Windows.Forms.Button();
             this.btnEditBill = new System.Windows.Forms.Button();
             this.cbBookingDate = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.cbPaymentStaff = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pkDatePay = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -160,13 +160,6 @@
             this.txtTableNumber.Size = new System.Drawing.Size(478, 22);
             this.txtTableNumber.TabIndex = 16;
             // 
-            // txtDatePay
-            // 
-            this.txtDatePay.Location = new System.Drawing.Point(181, 323);
-            this.txtDatePay.Name = "txtDatePay";
-            this.txtDatePay.Size = new System.Drawing.Size(478, 22);
-            this.txtDatePay.TabIndex = 18;
-            // 
             // btnBillPrinting
             // 
             this.btnBillPrinting.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -192,9 +185,9 @@
             // cbBookingDate
             // 
             this.cbBookingDate.FormattingEnabled = true;
-            this.cbBookingDate.Location = new System.Drawing.Point(181, 376);
+            this.cbBookingDate.Location = new System.Drawing.Point(180, 376);
             this.cbBookingDate.Name = "cbBookingDate";
-            this.cbBookingDate.Size = new System.Drawing.Size(479, 24);
+            this.cbBookingDate.Size = new System.Drawing.Size(476, 24);
             this.cbBookingDate.TabIndex = 22;
             // 
             // listView1
@@ -226,18 +219,31 @@
             this.label9.TabIndex = 24;
             this.label9.Text = "NV thanh toán";
             // 
+            // pkDatePay
+            // 
+            this.pkDatePay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.pkDatePay.Location = new System.Drawing.Point(180, 325);
+            this.pkDatePay.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.pkDatePay.MinDate = new System.DateTime(2023, 3, 13, 0, 0, 0, 0);
+            this.pkDatePay.Name = "pkDatePay";
+            this.pkDatePay.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pkDatePay.Size = new System.Drawing.Size(476, 22);
+            this.pkDatePay.TabIndex = 26;
+            this.pkDatePay.Value = new System.DateTime(2023, 3, 28, 10, 47, 57, 0);
+            this.pkDatePay.ValueChanged += new System.EventHandler(this.pkDate_ValueChanged);
+            // 
             // frmBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 803);
+            this.Controls.Add(this.pkDatePay);
             this.Controls.Add(this.cbPaymentStaff);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.cbBookingDate);
             this.Controls.Add(this.btnEditBill);
             this.Controls.Add(this.btnBillPrinting);
-            this.Controls.Add(this.txtDatePay);
             this.Controls.Add(this.txtTableNumber);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbCustomerName);
@@ -272,12 +278,12 @@
         private System.Windows.Forms.ComboBox cbCustomerName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTableNumber;
-        private System.Windows.Forms.TextBox txtDatePay;
         private System.Windows.Forms.Button btnBillPrinting;
         private System.Windows.Forms.Button btnEditBill;
         private System.Windows.Forms.ComboBox cbBookingDate;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox cbPaymentStaff;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker pkDatePay;
     }
 }
