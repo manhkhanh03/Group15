@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label7 = new System.Windows.Forms.Label();
-            this.btnExit = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
@@ -38,11 +37,6 @@
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.txtNameStaff = new System.Windows.Forms.TextBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnAddNew = new System.Windows.Forms.Button();
             this.txtStaffID = new System.Windows.Forms.TextBox();
             this.rbGirl = new System.Windows.Forms.RadioButton();
             this.rbBoy = new System.Windows.Forms.RadioButton();
@@ -51,32 +45,33 @@
             this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbStaffInfo = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbSapXep = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnCalendar = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnAddNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbStaffInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(721, 489);
+            this.label7.Location = new System.Drawing.Point(681, 526);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 20);
             this.label7.TabIndex = 27;
             this.label7.Text = "List Staff";
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(1280, 325);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(138, 51);
-            this.btnExit.TabIndex = 33;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // txtAddress
             // 
@@ -90,7 +85,7 @@
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBirthday.Location = new System.Drawing.Point(534, 40);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(279, 27);
+            this.dtpBirthday.Size = new System.Drawing.Size(212, 27);
             this.dtpBirthday.TabIndex = 17;
             // 
             // label9
@@ -138,55 +133,6 @@
             this.txtNameStaff.Name = "txtNameStaff";
             this.txtNameStaff.Size = new System.Drawing.Size(209, 27);
             this.txtNameStaff.TabIndex = 9;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(1106, 325);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(130, 51);
-            this.btnDelete.TabIndex = 32;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(1280, 213);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(134, 56);
-            this.btnEdit.TabIndex = 31;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(1106, 213);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(130, 56);
-            this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(1280, 109);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(138, 49);
-            this.btnSave.TabIndex = 29;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.Location = new System.Drawing.Point(1106, 109);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(130, 53);
-            this.btnAddNew.TabIndex = 28;
-            this.btnAddNew.Text = "AddNew";
-            this.btnAddNew.UseVisualStyleBackColor = true;
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // txtStaffID
             // 
@@ -237,11 +183,11 @@
             // 
             this.dgvStaff.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStaff.Location = new System.Drawing.Point(160, 542);
+            this.dgvStaff.Location = new System.Drawing.Point(146, 568);
             this.dgvStaff.Name = "dgvStaff";
             this.dgvStaff.RowHeadersWidth = 51;
             this.dgvStaff.RowTemplate.Height = 24;
-            this.dgvStaff.Size = new System.Drawing.Size(1156, 308);
+            this.dgvStaff.Size = new System.Drawing.Size(1144, 308);
             this.dgvStaff.TabIndex = 34;
             this.dgvStaff.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellEnter);
             // 
@@ -263,32 +209,32 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Position:";
             // 
-            // groupBox1
+            // gbStaffInfo
             // 
-            this.groupBox1.Controls.Add(this.txtAddress);
-            this.groupBox1.Controls.Add(this.dtpBirthday);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.mtxtPhone);
-            this.groupBox1.Controls.Add(this.txtSalary);
-            this.groupBox1.Controls.Add(this.txtPosition);
-            this.groupBox1.Controls.Add(this.txtNameStaff);
-            this.groupBox1.Controls.Add(this.txtStaffID);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.rbGirl);
-            this.groupBox1.Controls.Add(this.rbBoy);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(74, 68);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(914, 347);
-            this.groupBox1.TabIndex = 26;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " Staff Information";
+            this.gbStaffInfo.Controls.Add(this.txtAddress);
+            this.gbStaffInfo.Controls.Add(this.dtpBirthday);
+            this.gbStaffInfo.Controls.Add(this.label9);
+            this.gbStaffInfo.Controls.Add(this.label8);
+            this.gbStaffInfo.Controls.Add(this.mtxtPhone);
+            this.gbStaffInfo.Controls.Add(this.txtSalary);
+            this.gbStaffInfo.Controls.Add(this.txtPosition);
+            this.gbStaffInfo.Controls.Add(this.txtNameStaff);
+            this.gbStaffInfo.Controls.Add(this.txtStaffID);
+            this.gbStaffInfo.Controls.Add(this.label6);
+            this.gbStaffInfo.Controls.Add(this.label5);
+            this.gbStaffInfo.Controls.Add(this.label4);
+            this.gbStaffInfo.Controls.Add(this.rbGirl);
+            this.gbStaffInfo.Controls.Add(this.rbBoy);
+            this.gbStaffInfo.Controls.Add(this.label3);
+            this.gbStaffInfo.Controls.Add(this.label2);
+            this.gbStaffInfo.Controls.Add(this.label1);
+            this.gbStaffInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbStaffInfo.Location = new System.Drawing.Point(12, 68);
+            this.gbStaffInfo.Name = "gbStaffInfo";
+            this.gbStaffInfo.Size = new System.Drawing.Size(882, 347);
+            this.gbStaffInfo.TabIndex = 26;
+            this.gbStaffInfo.TabStop = false;
+            this.gbStaffInfo.Text = " Staff Information";
             // 
             // label4
             // 
@@ -308,26 +254,159 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Gender:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(231, 487);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 20);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "Arrange";
+            // 
+            // cbSapXep
+            // 
+            this.cbSapXep.FormattingEnabled = true;
+            this.cbSapXep.Items.AddRange(new object[] {
+            "NameStaff",
+            "StaffID"});
+            this.cbSapXep.Location = new System.Drawing.Point(342, 487);
+            this.cbSapXep.Name = "cbSapXep";
+            this.cbSapXep.Size = new System.Drawing.Size(229, 24);
+            this.cbSapXep.TabIndex = 50;
+            this.cbSapXep.SelectedIndexChanged += new System.EventHandler(this.cbSapXep_SelectedIndexChanged);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(928, 489);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(278, 22);
+            this.txtSearch.TabIndex = 52;
+            // 
+            // btnCalendar
+            // 
+            this.btnCalendar.Location = new System.Drawing.Point(1089, 379);
+            this.btnCalendar.Name = "btnCalendar";
+            this.btnCalendar.Size = new System.Drawing.Size(177, 64);
+            this.btnCalendar.TabIndex = 54;
+            this.btnCalendar.Text = "Calendar";
+            this.btnCalendar.UseVisualStyleBackColor = true;
+            this.btnCalendar.Click += new System.EventHandler(this.btnCalendar_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::RestaurantManager.Properties.Resources.rsz_6422ed937463d;
+            this.btnSearch.Location = new System.Drawing.Point(1245, 478);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(45, 41);
+            this.btnSearch.TabIndex = 53;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_exit_sign_64;
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExit.Location = new System.Drawing.Point(1219, 287);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(129, 50);
+            this.btnExit.TabIndex = 48;
+            this.btnExit.Text = "Exit";
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExit.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_remove_641;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(1001, 287);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(129, 50);
+            this.btnDelete.TabIndex = 47;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_edit_row_64;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(1219, 195);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(129, 48);
+            this.btnEdit.TabIndex = 46;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_close_64;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(1001, 195);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(129, 48);
+            this.btnCancel.TabIndex = 45;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_save_64;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1219, 119);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(129, 47);
+            this.btnSave.TabIndex = 44;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNew.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_add_folder_64__1_;
+            this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddNew.Location = new System.Drawing.Point(1001, 116);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(129, 50);
+            this.btnAddNew.TabIndex = 43;
+            this.btnAddNew.Text = "AddNew";
+            this.btnAddNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            // 
             // frmStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1565, 920);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(1454, 920);
+            this.Controls.Add(this.btnCalendar);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.cbSapXep);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAddNew);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvStaff);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbStaffInfo);
             this.Name = "frmStaff";
             this.Text = "Staff";
             this.Load += new System.EventHandler(this.frmStaff_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbStaffInfo.ResumeLayout(false);
+            this.gbStaffInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,7 +415,6 @@
         #endregion
 
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.Label label9;
@@ -345,11 +423,6 @@
         private System.Windows.Forms.TextBox txtSalary;
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.TextBox txtNameStaff;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.TextBox txtStaffID;
         private System.Windows.Forms.RadioButton rbGirl;
         private System.Windows.Forms.RadioButton rbBoy;
@@ -358,8 +431,19 @@
         private System.Windows.Forms.DataGridView dgvStaff;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbStaffInfo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbSapXep;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnCalendar;
     }
 }

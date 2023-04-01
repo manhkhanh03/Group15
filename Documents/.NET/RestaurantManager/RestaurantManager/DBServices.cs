@@ -12,7 +12,8 @@ namespace RestaurantManager
     internal class DBServices
     {
         //private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;User ID=manhkhanh;Password=1234";
-        private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;Integrated Security=True";
+        //private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;Integrated Security=True";
+        private string conn = @"Data source= DESKTOP-VNHT20S\SQLEXPRESS; Initial Catalog=RestaurantManager;Integrated security=True";
         private SqlConnection mySqlConnection;
 
         public DBServices()
@@ -75,13 +76,6 @@ namespace RestaurantManager
                     sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]}";
                     break;
                 case 3:
-                    //for (int key = 0; key < ValueQuery[2].ToString().Length; key++)
-                    //{
-                    //MessageBox.Show(ValueQuery[2].ToString().IndexOf("and").ToString());
-                    //if (ValueQuery[2].ToString()[key].ToString() != "=" && ValueQuery[2].ToString()[key].ToString() != "AND")
-                    //{
-                    //sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} WHERE {ValueQuery[2]}";
-                    //}
                     string value = ValueQuery[2].ToString();
                     switch (value.Contains("=") && value.Contains("AND") && value.Contains("NULL") && value.Contains("IS"))
                     {
@@ -92,7 +86,6 @@ namespace RestaurantManager
                             sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} GROUP BY {ValueQuery[2]}";
                             break;
                     }
-                    //}
                     break;
                 case 4:
                     sql = $"SELECT {ValueQuery[1]} FROM {ValueQuery[0]} WHERE {ValueQuery[2]} " +
@@ -101,10 +94,6 @@ namespace RestaurantManager
             }
 
             return getData(sql);
-            //foreach (object key in ValueQuery)
-            //{
-            //    MessageBox.Show(key.ToString());
-            //}
         }
 
         // insert into ... values

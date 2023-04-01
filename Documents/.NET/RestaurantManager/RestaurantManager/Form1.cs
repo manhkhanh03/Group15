@@ -44,8 +44,8 @@ namespace RestaurantManager
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
-            frmStaff staff = new frmStaff();
-            staff.ShowDialog();
+            frmStaff st = new frmStaff();
+            st.ShowDialog();
         }
     }
 }

@@ -32,17 +32,19 @@ namespace RestaurantManager
         private void setEnable(bool check)
         {
             txtFoodID.Enabled = false;
-            txtNameFood.Enabled = check;
-            txtPrice.Enabled = check;
-            txtDescription.Enabled = check;
-            cbTypeFoodID.Enabled = check;
+            txtNameFood.Enabled = !check;
+            txtPrice.Enabled = !check;
+            txtDescription.Enabled = !check;
+            cbTypeFoodID.Enabled = !check;
             btnAddNew.Enabled = !check;
             btnDelete.Enabled = !check;
             btnEdit.Enabled = !check;
             btnExit.Enabled = !check;
-            btnCancel.Enabled = check;
-            btnSave.Enabled = check;
+            btnCancel.Enabled = !check;
+            btnSave.Enabled = !check;
             dgvListFood.Enabled = !check;
+
+
 
         }
 
@@ -62,13 +64,27 @@ namespace RestaurantManager
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            AddNew = true;
-            setEnable(true);
-            txtFoodID.Clear();
-            txtPrice.Clear();
-            txtNameFood.Clear();
-            txtDescription.Clear();
-            txtNameFood.Focus();
+            /* AddNew = true;
+             setEnable(true);
+             txtFoodID.Clear();
+             txtPrice.Clear();
+             txtNameFood.Clear();
+             txtDescription.Clear();
+             txtNameFood.Focus();*/
+            try
+            {
+                AddNew = true;
+                setEnable(true);
+                txtFoodID.Clear();
+                txtPrice.Clear();
+                txtNameFood.Clear();
+                txtDescription.Clear();
+                txtNameFood.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

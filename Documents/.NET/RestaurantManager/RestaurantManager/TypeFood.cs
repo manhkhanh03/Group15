@@ -36,7 +36,17 @@ namespace RestaurantManager
             dgvTypeFood.DataSource = db.getData(sql);
             setEnable(false);
         }
+        private void dgvTypeFood_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = e.RowIndex;
+            if (i >= 0)
+            {
 
+                txtNameType.Text = dgvTypeFood.Rows[i].Cells["NameType"].Value.ToString();
+                txtTypeFoodID.Text = dgvTypeFood.Rows[i].Cells["TypeFoodID"].Value.ToString();
+
+            }
+        }
         private void btnAddNew_Click(object sender, EventArgs e)
         {
 
@@ -78,17 +88,7 @@ namespace RestaurantManager
             }
         }
 
-        private void dgvTypeFood_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            int i = e.RowIndex;
-            if (i >= 0)
-            {
-
-                txtNameType.Text = dgvTypeFood.Rows[i].Cells["NameType"].Value.ToString();
-                txtTypeFoodID.Text = dgvTypeFood.Rows[i].Cells["TypeFoodID"].Value.ToString();
-
-            }
-        }
+       
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
