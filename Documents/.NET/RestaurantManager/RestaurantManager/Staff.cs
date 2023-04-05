@@ -57,9 +57,9 @@ namespace RestaurantManager
                 txtNameStaff.Text = dgvStaff.Rows[i].Cells["NameStaff"].Value.ToString();
                 mtxtPhone.Text = dgvStaff.Rows[i].Cells["Phone"].Value.ToString();
                 txtPosition.Text = dgvStaff.Rows[i].Cells["Position"].Value.ToString();
-                txtSalary.Text = dgvStaff.Rows[i].Cells["Salary"].Value.ToString();
-                txtAddress.Text = dgvStaff.Rows[i].Cells["Address"].Value.ToString();
-                dtpBirthday.Text = dgvStaff.Rows[i].Cells["Birthday"].Value.ToString();
+                //txtSalary.Text = dgvStaff.Rows[i].Cells["Salary"].Value.ToString();
+                //txtAddress.Text = dgvStaff.Rows[i].Cells["Address"].Value.ToString();
+                //dtpBirthday.Text = dgvStaff.Rows[i].Cells["Birthday"].Value.ToString();
                 if (dgvStaff.Rows[i].Cells["Gender"].Value.ToString() == "Nam") rbBoy.Checked = true;
                 else rbBoy.Checked = false;
                 if (dgvStaff.Rows[i].Cells["Gender"].Value.ToString() == "Nữ") rbGirl.Checked = true;

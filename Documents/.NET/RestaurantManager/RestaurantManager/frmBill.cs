@@ -63,7 +63,7 @@ namespace RestaurantManager
         {
             string from = "(ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID) " +
                 "JOIN CUSTOMERS ON CUSTOMERS.CUSTOMERID = BOOKINGS.CUSTOMERID ";
-            string where = $"CUSTOMERS.CUSTOMERNAME= N'{cbCustomerName.Text}'";
+            string where = $"CUSTOMERS.CUSTOMERNAME= N'{cbCustomerName.Text}' and Pay = N'Chưa thanh toán' ";
             string select = "ORDERS.ORDERID";
             DBServices db = new DBServices();
 
@@ -214,6 +214,7 @@ namespace RestaurantManager
 
         private void btnEditBill_Click(object sender, EventArgs e)
         {
+            this.orderID = getOrderID();
             frmOrders od = new frmOrders(getBookID(this.orderID), false);
             od.Show();
             this.Close();
