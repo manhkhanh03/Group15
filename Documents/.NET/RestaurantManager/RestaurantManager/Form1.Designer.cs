@@ -41,7 +41,7 @@
             // btnTable
             // 
             this.btnTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTable.Location = new System.Drawing.Point(107, 200);
+            this.btnTable.Location = new System.Drawing.Point(107, 176);
             this.btnTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTable.Name = "btnTable";
             this.btnTable.Size = new System.Drawing.Size(300, 47);
@@ -63,7 +63,7 @@
             // btnFinancialManagement
             // 
             this.btnFinancialManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinancialManagement.Location = new System.Drawing.Point(509, 200);
+            this.btnFinancialManagement.Location = new System.Drawing.Point(509, 176);
             this.btnFinancialManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFinancialManagement.Name = "btnFinancialManagement";
             this.btnFinancialManagement.Size = new System.Drawing.Size(300, 47);
@@ -74,7 +74,7 @@
             // btnOrderManagement
             // 
             this.btnOrderManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderManagement.Location = new System.Drawing.Point(509, 280);
+            this.btnOrderManagement.Location = new System.Drawing.Point(509, 281);
             this.btnOrderManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrderManagement.Name = "btnOrderManagement";
             this.btnOrderManagement.Size = new System.Drawing.Size(300, 47);
@@ -86,28 +86,29 @@
             // btnBillPrinting
             // 
             this.btnBillPrinting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBillPrinting.Location = new System.Drawing.Point(509, 360);
+            this.btnBillPrinting.Location = new System.Drawing.Point(509, 379);
             this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBillPrinting.Name = "btnBillPrinting";
             this.btnBillPrinting.Size = new System.Drawing.Size(300, 47);
             this.btnBillPrinting.TabIndex = 4;
-            this.btnBillPrinting.Text = "In Bill";
+            this.btnBillPrinting.Text = "In hóa đơn";
             this.btnBillPrinting.UseVisualStyleBackColor = true;
             this.btnBillPrinting.Click += new System.EventHandler(this.btnBillPrinting_Click);
             // 
             // btnCustomer
             // 
-            this.btnCustomer.Location = new System.Drawing.Point(317, 473);
+            this.btnCustomer.Location = new System.Drawing.Point(317, 492);
             this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(300, 47);
             this.btnCustomer.TabIndex = 15;
             this.btnCustomer.Text = "Quản lý khách hàng";
             this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnStaff
             // 
-            this.btnStaff.Location = new System.Drawing.Point(107, 364);
+            this.btnStaff.Location = new System.Drawing.Point(107, 379);
             this.btnStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.Size = new System.Drawing.Size(300, 47);
@@ -118,7 +119,7 @@
             // 
             // btnFood
             // 
-            this.btnFood.Location = new System.Drawing.Point(107, 275);
+            this.btnFood.Location = new System.Drawing.Point(107, 274);
             this.btnFood.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFood.Name = "btnFood";
             this.btnFood.Size = new System.Drawing.Size(300, 47);
@@ -131,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 616);
+            this.ClientSize = new System.Drawing.Size(965, 615);
             this.Controls.Add(this.btnCustomer);
             this.Controls.Add(this.btnStaff);
             this.Controls.Add(this.btnFood);

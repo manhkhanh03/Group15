@@ -47,5 +47,11 @@ namespace RestaurantManager
             frmStaff st = new frmStaff();
             st.ShowDialog();
         }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            frmCustomer cr = new frmCustomer();
+            cr.ShowDialog();
+        }
     }
 }
