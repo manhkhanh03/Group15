@@ -21,12 +21,22 @@ namespace RestaurantManager
         private void Calendar_Load(object sender, EventArgs e)
         {
             LoadGridData();
+            GetDataStaff();
+        }
+        private void GetDataStaff() 
+        {
+            DBServices db = new DBServices();
+            cbStaffID.DisplayMember = "StaffID";
+            cbStaffID.ValueMember = "StaffID";
+            string sql = "select * from Staffs ";
+            cbStaffID.DataSource = db.getData(sql);
+
         }
         private void LoadGridData()
         {
             DBServices db = new DBServices();
             string sql = "select * from Calendars";
-            dgvCalendar.DataSource = db.getData(sql);
+            dgvCalendars.DataSource = db.getData(sql);
             SetEnable(false);
         }
         private void SetEnable(bool check)
@@ -39,7 +49,7 @@ namespace RestaurantManager
             btnExit.Enabled = !check;
             btnCancel.Enabled = check;
             btnSave.Enabled = check;
-            dgvCalendar.Enabled = !check;
+            dgvCalendars.Enabled = !check;
         }
 
         private void dgvCalendar_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -47,14 +57,14 @@ namespace RestaurantManager
             int i = e.RowIndex;
             if (i >= 0) 
             {
-                txtCalendarID.Text = dgvCalendar.Rows[i].Cells["CalendarID"].Value.ToString();
-                cbStaffID.Text = dgvCalendar.Rows[i].Cells["StaffID"].Value.ToString();
-                dtpDate.Text = dgvCalendar.Rows[i].Cells["Date"].Value.ToString();
-                if (dgvCalendar.Rows[i].Cells["Shift"].Value.ToString() == "Ca sáng") rbCasang.Checked = true;
+                txtCalendarID.Text = dgvCalendars.Rows[i].Cells["CalendarID"].Value.ToString();
+                cbStaffID.SelectedValue = dgvCalendars.Rows[i].Cells["StaffID"].Value.ToString();
+                dtpDate.Text = dgvCalendars.Rows[i].Cells["Date"].Value.ToString();
+                if (dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca sáng") rbCasang.Checked = true;
                 else rbCasang.Checked = false;
-                if (dgvCalendar.Rows[i].Cells["Shift"].Value.ToString() == "Ca chiều") rbCachieu.Checked = true;
+                if (dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca chiều") rbCachieu.Checked = true;
                 else rbCachieu.Checked = false;
-                if(dgvCalendar.Rows[i].Cells["Shift"].Value.ToString() == "Ca tối") rbCachieu.Checked = true;
+                if(dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca tối") rbCachieu.Checked = true;
                 else rbCatoi.Checked = false;
             }
         }
@@ -89,7 +99,7 @@ namespace RestaurantManager
             {
                 
                 int count = 0;
-                count = dgvCalendar.Rows.Count;
+                count = dgvCalendars.Rows.Count;
                 ci = count.ToString();
                 AddNew = true;
                 SetEnable(true);

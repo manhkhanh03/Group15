@@ -22,6 +22,7 @@ namespace RestaurantManager
         public DBServices()
         {
             mySqlConnection = new SqlConnection(conn);
+            
         }
 
         public DataTable getData(string sql)

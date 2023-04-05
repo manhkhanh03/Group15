@@ -21,6 +21,15 @@ namespace RestaurantManager
         private void frmFood_Load(object sender, EventArgs e)
         {
             LoadGridData();
+            GetDataTypefood();
+        }
+        private void GetDataTypefood()
+        {
+            DBServices db = new DBServices();
+            cbTypeFoodID.DisplayMember = "TypeFoodID";
+            cbTypeFoodID.ValueMember = "TypeFoodID";
+            string sql = "select * from TypeFoods ";
+            cbTypeFoodID.DataSource = db.getData(sql);
         }
         private void LoadGridData()
         {
@@ -32,18 +41,17 @@ namespace RestaurantManager
         private void setEnable(bool check)
         {
             txtFoodID.Enabled = false;
-            txtNameFood.Enabled = !check;
-            txtPrice.Enabled = !check;
-            txtDescription.Enabled = !check;
-            cbTypeFoodID.Enabled = !check;
+            txtNameFood.Enabled = check;
+            txtPrice.Enabled = check;
+            txtDescription.Enabled = check;
+            cbTypeFoodID.Enabled = check;
             btnAddNew.Enabled = !check;
             btnDelete.Enabled = !check;
             btnEdit.Enabled = !check;
             btnExit.Enabled = !check;
-            btnCancel.Enabled = !check;
-            btnSave.Enabled = !check;
+            btnCancel.Enabled = check;
+            btnSave.Enabled = check;
             dgvListFood.Enabled = !check;
-
 
 
         }
@@ -62,32 +70,25 @@ namespace RestaurantManager
             }
         }
 
-        private void btnAddNew_Click(object sender, EventArgs e)
+  
+        private void btnMenu_Click(object sender, EventArgs e)
         {
-            /* AddNew = true;
-             setEnable(true);
-             txtFoodID.Clear();
-             txtPrice.Clear();
-             txtNameFood.Clear();
-             txtDescription.Clear();
-             txtNameFood.Focus();*/
-            try
-            {
-                AddNew = true;
-                setEnable(true);
-                txtFoodID.Clear();
-                txtPrice.Clear();
-                txtNameFood.Clear();
-                txtDescription.Clear();
-                txtNameFood.Focus();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            frmTypeFood tf = new frmTypeFood();
+            tf.ShowDialog();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnAddNew_Click_1(object sender, EventArgs e)
+        {
+            AddNew = true;
+            setEnable(true);
+            txtFoodID.Clear();
+            txtPrice.Clear();
+            txtNameFood.Clear();
+            txtDescription.Clear();
+            txtNameFood.Focus();
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             string fi;
             string nf = txtNameFood.Text;
@@ -126,18 +127,18 @@ namespace RestaurantManager
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             setEnable(false);
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click_1(object sender, EventArgs e)
         {
             AddNew = false;
             setEnable(true);
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("Ban co chan chan muon xoa ?", "Thong bao");
             string fi = txtFoodID.Text;
@@ -150,12 +151,6 @@ namespace RestaurantManager
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            frmTypeFood tf = new frmTypeFood();
-            tf.ShowDialog();
         }
     }
 }

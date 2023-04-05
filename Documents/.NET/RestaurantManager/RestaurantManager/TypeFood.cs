@@ -25,8 +25,15 @@ namespace RestaurantManager
         }
         private void setEnable(bool check)
         {
+
             txtTypeFoodID.Enabled = check;
             txtNameType.Enabled = check;
+            btnAddNew.Enabled = !check;
+            btnDelete.Enabled = !check;
+            btnEdit.Enabled = !check;
+            btnExit.Enabled = !check;
+            btnCancel.Enabled = check;
+            btnSave.Enabled = check;
 
         }
         private void LoadGridData()
@@ -47,9 +54,10 @@ namespace RestaurantManager
 
             }
         }
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
+      
 
+        private void btnAddNew_Click_1(object sender, EventArgs e)
+        {
             AddNew = true;
             setEnable(true);
             txtTypeFoodID.Clear();
@@ -57,7 +65,7 @@ namespace RestaurantManager
             txtNameType.Focus();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             string nf = txtNameType.Text;
             string ti = txtTypeFoodID.Text;
@@ -88,21 +96,19 @@ namespace RestaurantManager
             }
         }
 
-       
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             setEnable(false);
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click_1(object sender, EventArgs e)
         {
             AddNew = false;
             setEnable(true);
             idType = txtTypeFoodID.Text;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("Ban co chan chan muon xoa ?", "Thong bao");
             string ti = txtTypeFoodID.Text;
@@ -112,7 +118,7 @@ namespace RestaurantManager
             LoadGridData();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnExit_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
