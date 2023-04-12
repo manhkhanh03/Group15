@@ -153,10 +153,19 @@ namespace RestaurantManager
             txtIntoMoney.Text = dcmPrices.ToString();
         }
 
+        public string getCustomerID()
+        {
+            DBServices db = new DBServices();
+            string select = "CustomerID";
+            string where = $"CUSTOMERNAME = N'{cbCustomerName.Text}'";
+            return db.queryProcedure("CUSTOMERS", select, where).ToString();
+        }
+
         public void addBill()
         {
             dynamic obj = new ExpandoObject();
-            obj.billID = int.Parse(txtBillId.Text);
+            obj.billID = txtBillId.Text;
+            obj.customerID = getCustomerID();
             obj.staffID = cbPaymentStaff.SelectedValue.ToString();
             obj.bookID = getBookID(this.orderID);
             obj.datePay = pkDatePay.Text;

@@ -28,7 +28,7 @@ namespace RestaurantManager
             DBServices db = new DBServices();
             //string sql = "SELECT * FROM Staffs ";
             //dgvStaff.DataSource = db.getData(sql);
-            dgvStaff.DataSource = db.querySelect("Staffs");
+            dgvStaff.DataSource = db.querySelect("STAFFS");
             setEnable(false);
         }
         private void setEnable(bool check)
@@ -54,16 +54,16 @@ namespace RestaurantManager
             int i = e.RowIndex;
             if (i >= 0)
             {
-                txtStaffID.Text = dgvStaff.Rows[i].Cells["StaffID"].Value.ToString();
-                txtNameStaff.Text = dgvStaff.Rows[i].Cells["NameStaff"].Value.ToString();
-                mtxtPhone.Text = dgvStaff.Rows[i].Cells["Phone"].Value.ToString();
-                txtPosition.Text = dgvStaff.Rows[i].Cells["Position"].Value.ToString();
+                txtStaffID.Text = dgvStaff.Rows[i].Cells["STAFFID"].Value.ToString();
+                txtNameStaff.Text = dgvStaff.Rows[i].Cells["NAMESTAFF"].Value.ToString();
+                mtxtPhone.Text = dgvStaff.Rows[i].Cells["PHONE"].Value.ToString();
+                txtPosition.Text = dgvStaff.Rows[i].Cells["POSITION"].Value.ToString();
                 //txtSalary.Text = dgvStaff.Rows[i].Cells["Salary"].Value.ToString();
                 //txtAddress.Text = dgvStaff.Rows[i].Cells["Address"].Value.ToString();
                 //dtpBirthday.Text = dgvStaff.Rows[i].Cells["Birthday"].Value.ToString();
-                if (dgvStaff.Rows[i].Cells["Gender"].Value.ToString() == "Nam") rbBoy.Checked = true;
+                if (dgvStaff.Rows[i].Cells["GENDER"].Value.ToString() == "Nam") rbBoy.Checked = true;
                 else rbBoy.Checked = false;
-                if (dgvStaff.Rows[i].Cells["Gender"].Value.ToString() == "Nữ") rbGirl.Checked = true;
+                if (dgvStaff.Rows[i].Cells["GENDER"].Value.ToString() == "Nữ") rbGirl.Checked = true;
                 else rbGirl.Checked = false;
 
 
@@ -78,23 +78,23 @@ namespace RestaurantManager
         {
             if (cbSapXep.SelectedIndex == 0)
             {
-                dgvStaff.Columns["NameStaff"].SortMode = DataGridViewColumnSortMode.Automatic;
-                this.dgvStaff.Sort(this.dgvStaff.Columns["NameStaff"], ListSortDirection.Ascending);
+                dgvStaff.Columns["NAMESTAFF"].SortMode = DataGridViewColumnSortMode.Automatic;
+                this.dgvStaff.Sort(this.dgvStaff.Columns["NAMESTAFF"], ListSortDirection.Ascending);
                 
                 
 
             }
             else
             {
-                dgvStaff.Columns["StaffID"].SortMode = DataGridViewColumnSortMode.Automatic;
-                this.dgvStaff.Sort(this.dgvStaff.Columns["StaffID"], ListSortDirection.Ascending);
+                dgvStaff.Columns["STAFFID"].SortMode = DataGridViewColumnSortMode.Automatic;
+                this.dgvStaff.Sort(this.dgvStaff.Columns["STAFFID"], ListSortDirection.Ascending);
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
                 string se = txtSearch.Text;
-                string sql = $"select * from Staffs WHERE NameStaff like N'%{se}%'";
+                string sql = $"SELECT * FROM STAFFS WHERE NAMESTAFF LIKE N'%{se}%'";
                 DBServices db = new DBServices();
                 dgvStaff.DataSource = db.getData(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 setEnable(false);
@@ -121,7 +121,7 @@ namespace RestaurantManager
             txtPosition.Clear();
             txtSalary.Clear();
             DBServices db = new DBServices();
-            string ssql = "declare @id int select @id = substring(max(Staffid) ,3,3)from staffs select @id +1 ";
+            string ssql = "DECLARE @id INT SELECT @id = SUBSTRING(MAX(Staffid), 3, 3) FROM Staffs SELECT @id + 1 ";
             DataTable dt = db.getData(ssql);
             string upid = "NV" + (int.Parse(dt.Rows[0][0].ToString()) < 10 ? "00" + dt.Rows[0][0].ToString() : "0" + dt.Rows[0][0].ToString());
             txtStaffID.Text = upid; 
@@ -168,7 +168,7 @@ namespace RestaurantManager
                 AddNew = true;
                 setEnable(true);
                 //Ghi khi nhấp vào nút thêm mới
-                string sql = string.Format("INSERT INTO Staffs ( StaffID, NameStaff , Gender , Address,  Birthday, Phone , Position , Salary ) VALUES  ('{0}',N'{1}',N'{2}',N'{3}','{4}',N'{5}','{6}',{7})", si, ns, ge, ad, bi, ph, po, sa);
+                string sql = string.Format("INSERT INTO STAFFS ( STAFFID, NAMESTAFF, GENDER, ADDRESS, BIRTHDAT, PHONE, POSITION, SALARY) VALUES  ('{0}',N'{1}',N'{2}',N'{3}','{4}',N'{5}','{6}',{7})", si, ns, ge, ad, bi, ph, po, sa);
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
             }
@@ -177,14 +177,14 @@ namespace RestaurantManager
             {
                 //Ghi khi nhấp vào nút sửa 
 
-                string sql = string.Format("UPDATE Staffs SET " +
-                    "NameStaff = N'{0}' ," +
-                    "Gender = N'{1}' ," +
-                    "Address = N'{2}' ," +
-                    "Birthday = '{3}' ," +
-                    "Phone = '{4}' ," +
-                    "Position = N'{5}' ," +
-                    "Salary = '{6}'  WHERE StaffID = {7}", ns, ge, ad, ph, po, sa);
+                string sql = string.Format("UPDATE STAFFS SET " +
+                    "NAMESTAFF = N'{0}' ," +
+                    "GENDER = N'{1}' ," +
+                    "ADDRESS = N'{2}' ," +
+                    "BIRTHDAY = '{3}' ," +
+                    "PHONE = '{4}' ," +
+                    "POSITION = N'{5}' ," +
+                    "SALARY = '{6}'  WHERE STAFFID = {7}", ns, ge, ad, ph, po, sa);
                 DBServices db = new DBServices();
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
@@ -199,9 +199,9 @@ namespace RestaurantManager
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Ban co chan chan muon xoa ?", "Thong bao");
+            MessageBox.Show("Bạn có chắc chắn muốn xóa bản ghi?", "Thông báo");
             string si = txtStaffID.Text;
-            string sql = $"DELETE FROM Staffs WHERE StaffID like '{si}%'";
+            string sql = $"DELETE FROM STAFFS WHERE STAFFID LIKE '{si}%'";
             DBServices db = new DBServices();
             db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
             LoadGridData();
