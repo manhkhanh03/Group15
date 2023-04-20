@@ -15,8 +15,8 @@ namespace RestaurantManager
     internal class DBServices
     {
         //private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;User ID=manhkhanh;Password=1234";
-        //private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;Integrated Security=True";
-        private string conn = @"Data source= DESKTOP-VNHT20S\SQLEXPRESS; Initial Catalog=RestaurantManager;Integrated security=True";
+        private string conn = @"Data Source=LAPTOP-VL2DNGOC\SQLEXPRESS;Initial Catalog=RestaurantManager;Integrated Security=True";
+        //private string conn = @"Data source= DESKTOP-VNHT20S\SQLEXPRESS; Initial Catalog=RestaurantManager;Integrated security=True";
         private SqlConnection mySqlConnection;
 
         public DBServices()
@@ -39,6 +39,7 @@ namespace RestaurantManager
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { mySqlConnection.Close(); }
         }
 
         public void runQuery(string sql)
@@ -55,6 +56,7 @@ namespace RestaurantManager
                 MessageBox.Show(ex.Message);
                 return;
             }
+            finally { mySqlConnection.Close(); }
 
         }
 
@@ -188,8 +190,8 @@ namespace RestaurantManager
         public object queryProcedure(params object[] valueQuery)
         {
             /* Danh sách tham số
-             * 1: tên bảng
-             * 2: thuộc tính(tên cột, max, count, ... ) sau select
+             * 1: tên bảng :: bắt buộc
+             * 2: thuộc tính(tên cột, max, count, ... ) sau select :: bắt buộc
              * 3: câu điều kiện where đầy đủ hoặc câu group by đầy đủ
              * 4: cả điều kiện và group by
              */

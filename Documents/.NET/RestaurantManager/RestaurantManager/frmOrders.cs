@@ -22,6 +22,7 @@ namespace RestaurantManager
         bool quantityChange = false;
         bool myCheck = false;
         string bookID;
+        bool editBill = false;
         public frmOrders(string bookID ,bool myCheck)
         {
             InitializeComponent();
@@ -197,6 +198,7 @@ namespace RestaurantManager
             quantityChange = true;
             addNew = false;
             setEnable(false);
+            editBill = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -210,7 +212,8 @@ namespace RestaurantManager
         private void cbDishID_SelectedValueChanged(object sender, EventArgs e)
         {
             changed();
-            if (addNew) txtQuantity.Enabled = true;
+            if (addNew || editBill) txtQuantity.Enabled = true;
+            editBill= false;
         }
 
         private void btnBillPrinting_Click(object sender, EventArgs e)

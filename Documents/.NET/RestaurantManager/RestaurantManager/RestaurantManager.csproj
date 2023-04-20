@@ -78,6 +78,12 @@
     <Compile Include="frmDeskManager.Designer.cs">
       <DependentUpon>frmDeskManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFinancialManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinancialManagement.Designer.cs">
+      <DependentUpon>frmFinancialManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeskManager.resx">
       <DependentUpon>frmDeskManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinancialManagement.resx">
+      <DependentUpon>frmFinancialManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrders.resx">
       <DependentUpon>frmOrders.cs</DependentUpon>
@@ -225,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rsz_icons8-exit-sign-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

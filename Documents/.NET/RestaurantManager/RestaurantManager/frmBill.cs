@@ -63,7 +63,7 @@ namespace RestaurantManager
         {
             string from = "(ORDERS JOIN BOOKINGS ON ORDERS.BOOKID = BOOKINGS.BOOKID) " +
                 "JOIN CUSTOMERS ON CUSTOMERS.CUSTOMERID = BOOKINGS.CUSTOMERID ";
-            string where = $"CUSTOMERS.CUSTOMERNAME= N'{cbCustomerName.Text}'";
+            string where = $"CUSTOMERS.CUSTOMERNAME= N'{cbCustomerName.Text}' and Pay = N'Chưa thanh toán' ";
             string select = "ORDERS.ORDERID";
             DBServices db = new DBServices();
 
@@ -146,17 +146,44 @@ namespace RestaurantManager
             string valueReturn = db.queryProcedure(from, select, where).ToString();
             string[] strPrices = valueReturn.Split(',');
             decimal dcmPrices = 0;
-            foreach(string key in strPrices)
+            foreach (string key in strPrices)
             {
                 dcmPrices += Convert.ToDecimal(key.ToString());
             }
-            txtIntoMoney.Text = dcmPrices.ToString();
+
+            //string result = Convert.ToString();
+            txtIntoMoney.Text = (dcmPrices - (dcmPrices * setSale() / 100)).ToString();
+        }
+
+        public string getCustomerID()
+        {
+            DBServices db = new DBServices();
+            string select = "CustomerID";
+            string where = $"CUSTOMERNAME = N'{cbCustomerName.Text}'";
+            return db.queryProcedure("CUSTOMERS", select, where).ToString();
+        }
+        public decimal setSale()
+        {
+            string select = "COUNT(CUSTOMERID)";
+            string where = $"CUSTOMERID = '{getCustomerID()}'";
+            DBServices db = new DBServices();
+            string quantity = db.queryProcedure("BILLS", select, where).ToString();
+            decimal percent = 0;
+            if (Convert.ToInt32(quantity) >= 2 && Convert.ToInt32(quantity) <= 7)
+            {
+                percent = Convert.ToInt32(quantity) * 4;
+            }else if (Convert.ToInt32(quantity) > 7)
+            {
+                percent = 7 * 4;
+            }
+            return percent;
         }
 
         public void addBill()
         {
             dynamic obj = new ExpandoObject();
-            obj.billID = int.Parse(txtBillId.Text);
+            obj.billID = txtBillId.Text;
+            obj.customerID = getCustomerID();
             obj.staffID = cbPaymentStaff.SelectedValue.ToString();
             obj.bookID = getBookID(this.orderID);
             obj.datePay = pkDatePay.Text;
@@ -168,6 +195,7 @@ namespace RestaurantManager
         private void frmBill_Load(object sender, EventArgs e)
         {
             newBill();
+            txtSale.Text = setSale().ToString() + "%";
             getPaymentStaff();
             if(this.myBool)
                 getNameCustomer(true);
@@ -191,6 +219,7 @@ namespace RestaurantManager
             getFood(this.orderID);
             txtTableNumber.Text = getTableNumber().ToString();
             getDate();
+            txtSale.Text = setSale().ToString() + "%";
         }
 
         private void dtGridViewFood_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -214,6 +243,7 @@ namespace RestaurantManager
 
         private void btnEditBill_Click(object sender, EventArgs e)
         {
+            this.orderID = getOrderID();
             frmOrders od = new frmOrders(getBookID(this.orderID), false);
             od.Show();
             this.Close();

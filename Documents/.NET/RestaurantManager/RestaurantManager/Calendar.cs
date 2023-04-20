@@ -26,16 +26,15 @@ namespace RestaurantManager
         private void GetDataStaff() 
         {
             DBServices db = new DBServices();
-            cbStaffID.DisplayMember = "StaffID";
-            cbStaffID.ValueMember = "StaffID";
-            string sql = "select * from Staffs ";
+            cbStaffID.DisplayMember = "STAFFID";
+            cbStaffID.ValueMember = "STAFFID";
+            string sql = "SELECT * FROM STAFFS";
             cbStaffID.DataSource = db.getData(sql);
-
         }
         private void LoadGridData()
         {
             DBServices db = new DBServices();
-            string sql = "select * from Calendars";
+            string sql = "SELECT * FROM CALENDARS";
             dgvCalendars.DataSource = db.getData(sql);
             SetEnable(false);
         }
@@ -57,14 +56,14 @@ namespace RestaurantManager
             int i = e.RowIndex;
             if (i >= 0) 
             {
-                txtCalendarID.Text = dgvCalendars.Rows[i].Cells["CalendarID"].Value.ToString();
-                cbStaffID.SelectedValue = dgvCalendars.Rows[i].Cells["StaffID"].Value.ToString();
-                dtpDate.Text = dgvCalendars.Rows[i].Cells["Date"].Value.ToString();
-                if (dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca sáng") rbCasang.Checked = true;
+                txtCalendarID.Text = dgvCalendars.Rows[i].Cells["CALENDARID"].Value.ToString();
+                cbStaffID.SelectedValue = dgvCalendars.Rows[i].Cells["STAFFID"].Value.ToString();
+                dtpDate.Text = dgvCalendars.Rows[i].Cells["DATE"].Value.ToString();
+                if (dgvCalendars.Rows[i].Cells["SHIFT"].Value.ToString() == "Ca sáng") rbCasang.Checked = true;
                 else rbCasang.Checked = false;
-                if (dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca chiều") rbCachieu.Checked = true;
+                if (dgvCalendars.Rows[i].Cells["SHIFT"].Value.ToString() == "Ca chiều") rbCachieu.Checked = true;
                 else rbCachieu.Checked = false;
-                if(dgvCalendars.Rows[i].Cells["Shift"].Value.ToString() == "Ca tối") rbCachieu.Checked = true;
+                if(dgvCalendars.Rows[i].Cells["SHIFT"].Value.ToString() == "Ca tối") rbCachieu.Checked = true;
                 else rbCatoi.Checked = false;
             }
         }
@@ -104,7 +103,7 @@ namespace RestaurantManager
                 AddNew = true;
                 SetEnable(true);
                 //Ghi khi nhấp vào nút thêm mới
-                string sql = string.Format("INSERT INTO Calendars ( CalendarID, StaffID ,Date , Shift ) VALUES  ('{0}','{1}','{2}',N'{3}')", ci, cs, da, sh);
+                string sql = string.Format("INSERT INTO CALENDARS ( CALENDARID, STAFFID ,DATE , SHIFT) VALUES  ('{0}','{1}','{2}',N'{3}')", ci, cs, da, sh);
                 DBServices db = new DBServices();
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
@@ -113,10 +112,10 @@ namespace RestaurantManager
             {
 
                 ci = txtCalendarID.Text;
-                string sql = string.Format("UPDATE Calendars SET " +
-                    "StaffID = '{0}' ," +
-                    "Date = '{1}' ," +
-                    "Shift = N'{2}'   WHERE  CalendarID = {4}", cs,da,sh,ci);
+                string sql = string.Format("UPDATE CALENDARS SET " +
+                    "STAFFID = '{0}' ," +
+                    "DATE = '{1}' ," +
+                    "SHIFT = N'{2}'   WHERE  CALENDARID = {4}", cs,da,sh,ci);
                 DBServices db = new DBServices();
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
@@ -137,9 +136,9 @@ namespace RestaurantManager
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ban co chan chan muon xoa ?", "Thong bao");
+            MessageBox.Show("Bạn có chắc chắn muốn xóa bản ghi?", "Thông báo");
             string ci = txtCalendarID.Text;
-            string sql = $"DELETE FROM Calendars WHERE CalendarID like '{ci}%'";
+            string sql = $"DELETE FROM CALENDARS WHERE CALENDARID LIKE '{ci}%'";
             DBServices db = new DBServices();
             db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
             LoadGridData();

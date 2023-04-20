@@ -36,6 +36,16 @@
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnStaff = new System.Windows.Forms.Button();
             this.btnFood = new System.Windows.Forms.Button();
+            this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttTable = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttFood = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttStaff = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttFinance = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnttBill = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnPurchases = new System.Windows.Forms.Button();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTable
@@ -129,6 +139,78 @@
             this.btnFood.UseVisualStyleBackColor = true;
             this.btnFood.Click += new System.EventHandler(this.btnFood_Click);
             // 
+            // quảnLýToolStripMenuItem
+            // 
+            this.quảnLýToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnttTable,
+            this.mnttFood,
+            this.mnttStaff,
+            this.mnttFinance,
+            this.mnttOrder,
+            this.mnttBill});
+            this.quảnLýToolStripMenuItem.Image = global::RestaurantManager.Properties.Resources.icons8_home;
+            this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
+            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
+            this.quảnLýToolStripMenuItem.Text = "Quản lý";
+            // 
+            // mnttTable
+            // 
+            this.mnttTable.Name = "mnttTable";
+            this.mnttTable.Size = new System.Drawing.Size(224, 26);
+            this.mnttTable.Text = "Bàn";
+            // 
+            // mnttFood
+            // 
+            this.mnttFood.Name = "mnttFood";
+            this.mnttFood.Size = new System.Drawing.Size(224, 26);
+            this.mnttFood.Text = "Thực đơn";
+            // 
+            // mnttStaff
+            // 
+            this.mnttStaff.Name = "mnttStaff";
+            this.mnttStaff.Size = new System.Drawing.Size(224, 26);
+            this.mnttStaff.Text = "Nhân viên";
+            // 
+            // mnttFinance
+            // 
+            this.mnttFinance.Name = "mnttFinance";
+            this.mnttFinance.Size = new System.Drawing.Size(224, 26);
+            this.mnttFinance.Text = "Tài chính";
+            // 
+            // mnttOrder
+            // 
+            this.mnttOrder.Name = "mnttOrder";
+            this.mnttOrder.Size = new System.Drawing.Size(224, 26);
+            this.mnttOrder.Text = "Đơn hàng";
+            // 
+            // mnttBill
+            // 
+            this.mnttBill.Name = "mnttBill";
+            this.mnttBill.Size = new System.Drawing.Size(224, 26);
+            this.mnttBill.Text = "Hóa đơn";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quảnLýToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(965, 28);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // btnPurchases
+            // 
+            this.btnPurchases.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPurchases.Location = new System.Drawing.Point(118, 191);
+            this.btnPurchases.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPurchases.Name = "btnPurchases";
+            this.btnPurchases.Size = new System.Drawing.Size(300, 47);
+            this.btnPurchases.TabIndex = 17;
+            this.btnPurchases.Text = "Quản lý nhập hàng";
+            this.btnPurchases.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +227,8 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Quản lý nhà hàng";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +244,15 @@
         private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Button btnStaff;
         private System.Windows.Forms.Button btnFood;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnttTable;
+        private System.Windows.Forms.ToolStripMenuItem mnttFood;
+        private System.Windows.Forms.ToolStripMenuItem mnttStaff;
+        private System.Windows.Forms.ToolStripMenuItem mnttFinance;
+        private System.Windows.Forms.ToolStripMenuItem mnttOrder;
+        private System.Windows.Forms.ToolStripMenuItem mnttBill;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button btnPurchases;
     }
 }
 
