@@ -86,15 +86,14 @@ namespace RestaurantManager
 
             if (Addnew)
             {
-                int count = 0;
-                count = dgvCustomer.Rows.Count;
-                ci = count.ToString();
+                DBServices db = new DBServices();
+                string ssql = "declare @id int select @id = substring(max(Customerid),3,3)from customers select @id +1 ";
+                DataTable dt = db.getData(ssql);
+                string upid = "KH" + (int.Parse(dt.Rows[0][0].ToString()) < 10 ? "00" + dt.Rows[0][0].ToString() : "0" + dt.Rows[0][0].ToString());
                 Addnew = true;
                 SetEnable(true);
                 //Ghi khi nhấp vào nút thêm mới
-                string sql = string.Format("INSERT INTO Customers ( CustomerID, Name ,Phone , Address ,Birthday , Gender  ) VALUES  ('{0}',N'{1}','{2}',N'{3}','{4}',N'{5}')", ci, na, ph, ad, bi, ge);
-
-                DBServices db = new DBServices();
+                string sql = string.Format("INSERT INTO Customers ( CustomerID, Name ,Phone , Address ,Birthday , Gender  ) VALUES  ('{0}',N'{1}','{2}',N'{3}','{4}',N'{5}')", upid, na, ph, ad, bi, ge);
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
             }
@@ -137,6 +136,12 @@ namespace RestaurantManager
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnPurchaseHistory_Click(object sender, EventArgs e)
+        {
+            frmPurchaseHistory fp = new frmPurchaseHistory();
+            fp.ShowDialog();
         }
     }
 }

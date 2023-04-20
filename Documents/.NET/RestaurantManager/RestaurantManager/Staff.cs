@@ -120,11 +120,7 @@ namespace RestaurantManager
             mtxtPhone.Clear();
             txtPosition.Clear();
             txtSalary.Clear();
-            DBServices db = new DBServices();
-            string ssql = "declare @id int select @id = substring(max(Staffid) ,3,3)from staffs select @id +1 ";
-            DataTable dt = db.getData(ssql);
-            string upid = "NV" + (int.Parse(dt.Rows[0][0].ToString()) < 10 ? "00" + dt.Rows[0][0].ToString() : "0" + dt.Rows[0][0].ToString());
-            txtStaffID.Text = upid; 
+            
         }
 
         private void btnSave_Click_1(object sender, EventArgs e)
@@ -163,12 +159,14 @@ namespace RestaurantManager
                         ma = ma + k.ToString();
 
                     }*/
-
                 DBServices db = new DBServices();
+                string ssql = "declare @id int select @id = substring(max(Staffid),3,3)from staffs select @id +1 ";
+                DataTable dt = db.getData(ssql);
+                string upid = "NV" + (int.Parse(dt.Rows[0][0].ToString()) < 10 ? "00" + dt.Rows[0][0].ToString() : "0" + dt.Rows[0][0].ToString());
                 AddNew = true;
                 setEnable(true);
                 //Ghi khi nhấp vào nút thêm mới
-                string sql = string.Format("INSERT INTO Staffs ( StaffID, NameStaff , Gender , Address,  Birthday, Phone , Position , Salary ) VALUES  ('{0}',N'{1}',N'{2}',N'{3}','{4}',N'{5}','{6}',{7})", si, ns, ge, ad, bi, ph, po, sa);
+                string sql = string.Format("INSERT INTO Staffs ( StaffID, NameStaff , Gender , Address,  Birthday, Phone , Position , Salary ) VALUES  ('{0}',N'{1}',N'{2}',N'{3}','{4}',N'{5}','{6}',{7})", upid, ns, ge, ad, bi, ph, po, sa);
                 db.runQuery(sql); //thực thi một truy vấn không trả về bất kỳ giá trị nào từ cơ sở dữ liệu
                 LoadGridData();
             }

@@ -41,10 +41,10 @@
             // btnTable
             // 
             this.btnTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTable.Location = new System.Drawing.Point(107, 176);
-            this.btnTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTable.Location = new System.Drawing.Point(80, 143);
+            this.btnTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnTable.Name = "btnTable";
-            this.btnTable.Size = new System.Drawing.Size(300, 47);
+            this.btnTable.Size = new System.Drawing.Size(225, 38);
             this.btnTable.TabIndex = 0;
             this.btnTable.Text = "Quản lý bàn";
             this.btnTable.UseVisualStyleBackColor = true;
@@ -54,19 +54,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(272, 63);
+            this.label1.Location = new System.Drawing.Point(204, 51);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(386, 29);
+            this.label1.Size = new System.Drawing.Size(309, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "HỆ THỐNG QUẢN LÝ NHÀ HÀNG ";
             // 
             // btnFinancialManagement
             // 
             this.btnFinancialManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinancialManagement.Location = new System.Drawing.Point(509, 176);
-            this.btnFinancialManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFinancialManagement.Location = new System.Drawing.Point(382, 143);
+            this.btnFinancialManagement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFinancialManagement.Name = "btnFinancialManagement";
-            this.btnFinancialManagement.Size = new System.Drawing.Size(300, 47);
+            this.btnFinancialManagement.Size = new System.Drawing.Size(225, 38);
             this.btnFinancialManagement.TabIndex = 2;
             this.btnFinancialManagement.Text = "Quản lý tài chính";
             this.btnFinancialManagement.UseVisualStyleBackColor = true;
@@ -74,10 +75,10 @@
             // btnOrderManagement
             // 
             this.btnOrderManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderManagement.Location = new System.Drawing.Point(509, 281);
-            this.btnOrderManagement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrderManagement.Location = new System.Drawing.Point(382, 228);
+            this.btnOrderManagement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOrderManagement.Name = "btnOrderManagement";
-            this.btnOrderManagement.Size = new System.Drawing.Size(300, 47);
+            this.btnOrderManagement.Size = new System.Drawing.Size(225, 38);
             this.btnOrderManagement.TabIndex = 3;
             this.btnOrderManagement.Text = "Quản lý đơn hàng";
             this.btnOrderManagement.UseVisualStyleBackColor = true;
@@ -86,10 +87,10 @@
             // btnBillPrinting
             // 
             this.btnBillPrinting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBillPrinting.Location = new System.Drawing.Point(509, 379);
-            this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBillPrinting.Location = new System.Drawing.Point(382, 308);
+            this.btnBillPrinting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBillPrinting.Name = "btnBillPrinting";
-            this.btnBillPrinting.Size = new System.Drawing.Size(300, 47);
+            this.btnBillPrinting.Size = new System.Drawing.Size(225, 38);
             this.btnBillPrinting.TabIndex = 4;
             this.btnBillPrinting.Text = "In hóa đơn";
             this.btnBillPrinting.UseVisualStyleBackColor = true;
@@ -97,10 +98,10 @@
             // 
             // btnCustomer
             // 
-            this.btnCustomer.Location = new System.Drawing.Point(317, 492);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCustomer.Location = new System.Drawing.Point(238, 400);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(300, 47);
+            this.btnCustomer.Size = new System.Drawing.Size(225, 38);
             this.btnCustomer.TabIndex = 15;
             this.btnCustomer.Text = "Quản lý khách hàng";
             this.btnCustomer.UseVisualStyleBackColor = true;
@@ -108,10 +109,10 @@
             // 
             // btnStaff
             // 
-            this.btnStaff.Location = new System.Drawing.Point(107, 379);
-            this.btnStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStaff.Location = new System.Drawing.Point(80, 308);
+            this.btnStaff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStaff.Name = "btnStaff";
-            this.btnStaff.Size = new System.Drawing.Size(300, 47);
+            this.btnStaff.Size = new System.Drawing.Size(225, 38);
             this.btnStaff.TabIndex = 14;
             this.btnStaff.Text = "Quản lý nhân viên";
             this.btnStaff.UseVisualStyleBackColor = true;
@@ -119,10 +120,10 @@
             // 
             // btnFood
             // 
-            this.btnFood.Location = new System.Drawing.Point(107, 274);
-            this.btnFood.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFood.Location = new System.Drawing.Point(80, 223);
+            this.btnFood.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFood.Name = "btnFood";
-            this.btnFood.Size = new System.Drawing.Size(300, 47);
+            this.btnFood.Size = new System.Drawing.Size(225, 38);
             this.btnFood.TabIndex = 13;
             this.btnFood.Text = "Quản lý  thực đơn";
             this.btnFood.UseVisualStyleBackColor = true;
@@ -130,9 +131,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 615);
+            this.ClientSize = new System.Drawing.Size(729, 502);
             this.Controls.Add(this.btnCustomer);
             this.Controls.Add(this.btnStaff);
             this.Controls.Add(this.btnFood);
@@ -141,7 +142,7 @@
             this.Controls.Add(this.btnFinancialManagement);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTable);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Quản lý nhà hàng";
             this.ResumeLayout(false);

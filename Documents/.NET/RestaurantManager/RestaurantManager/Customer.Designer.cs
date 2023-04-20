@@ -48,6 +48,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
+            this.btnPurchaseHistory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,7 +169,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_exit_sign_64;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(994, 467);
+            this.btnExit.Location = new System.Drawing.Point(1119, 513);
             this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(97, 41);
@@ -183,7 +184,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_remove_641;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(835, 467);
+            this.btnDelete.Location = new System.Drawing.Point(923, 513);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(97, 41);
@@ -198,7 +199,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_edit_row_64;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(661, 466);
+            this.btnEdit.Location = new System.Drawing.Point(731, 516);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(97, 39);
@@ -213,7 +214,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_close_64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(487, 467);
+            this.btnCancel.Location = new System.Drawing.Point(536, 516);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 39);
@@ -228,7 +229,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_save_64;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(313, 467);
+            this.btnSave.Location = new System.Drawing.Point(343, 517);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(97, 38);
@@ -243,7 +244,7 @@
             this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNew.Image = global::RestaurantManager.Properties.Resources.rsz_icons8_add_folder_64__1_;
             this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddNew.Location = new System.Drawing.Point(168, 465);
+            this.btnAddNew.Location = new System.Drawing.Point(140, 517);
             this.btnAddNew.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(97, 41);
@@ -264,11 +265,22 @@
             this.dgvCustomer.TabIndex = 67;
             this.dgvCustomer.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellEnter);
             // 
+            // btnPurchaseHistory
+            // 
+            this.btnPurchaseHistory.Location = new System.Drawing.Point(176, 426);
+            this.btnPurchaseHistory.Name = "btnPurchaseHistory";
+            this.btnPurchaseHistory.Size = new System.Drawing.Size(149, 52);
+            this.btnPurchaseHistory.TabIndex = 68;
+            this.btnPurchaseHistory.Text = "PurchaseHistory";
+            this.btnPurchaseHistory.UseVisualStyleBackColor = true;
+            this.btnPurchaseHistory.Click += new System.EventHandler(this.btnPurchaseHistory_Click);
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1336, 561);
+            this.ClientSize = new System.Drawing.Size(1356, 603);
+            this.Controls.Add(this.btnPurchaseHistory);
             this.Controls.Add(this.dgvCustomer);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDelete);
@@ -320,5 +332,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.DataGridView dgvCustomer;
+        private System.Windows.Forms.Button btnPurchaseHistory;
     }
 }
