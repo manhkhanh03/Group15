@@ -146,11 +146,13 @@ namespace RestaurantManager
             string valueReturn = db.queryProcedure(from, select, where).ToString();
             string[] strPrices = valueReturn.Split(',');
             decimal dcmPrices = 0;
-            foreach(string key in strPrices)
+            foreach (string key in strPrices)
             {
                 dcmPrices += Convert.ToDecimal(key.ToString());
             }
-            txtIntoMoney.Text = dcmPrices.ToString();
+
+            //string result = Convert.ToString();
+            txtIntoMoney.Text = (dcmPrices - (dcmPrices * setSale() / 100)).ToString();
         }
 
         public string getCustomerID()
@@ -159,6 +161,22 @@ namespace RestaurantManager
             string select = "CustomerID";
             string where = $"CUSTOMERNAME = N'{cbCustomerName.Text}'";
             return db.queryProcedure("CUSTOMERS", select, where).ToString();
+        }
+        public decimal setSale()
+        {
+            string select = "COUNT(CUSTOMERID)";
+            string where = $"CUSTOMERID = '{getCustomerID()}'";
+            DBServices db = new DBServices();
+            string quantity = db.queryProcedure("BILLS", select, where).ToString();
+            decimal percent = 0;
+            if (Convert.ToInt32(quantity) >= 2 && Convert.ToInt32(quantity) <= 7)
+            {
+                percent = Convert.ToInt32(quantity) * 4;
+            }else if (Convert.ToInt32(quantity) > 7)
+            {
+                percent = 7 * 4;
+            }
+            return percent;
         }
 
         public void addBill()
@@ -177,6 +195,7 @@ namespace RestaurantManager
         private void frmBill_Load(object sender, EventArgs e)
         {
             newBill();
+            txtSale.Text = setSale().ToString() + "%";
             getPaymentStaff();
             if(this.myBool)
                 getNameCustomer(true);
@@ -200,6 +219,7 @@ namespace RestaurantManager
             getFood(this.orderID);
             txtTableNumber.Text = getTableNumber().ToString();
             getDate();
+            txtSale.Text = setSale().ToString() + "%";
         }
 
         private void dtGridViewFood_CellEnter(object sender, DataGridViewCellEventArgs e)

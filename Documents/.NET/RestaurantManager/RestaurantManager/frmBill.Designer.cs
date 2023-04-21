@@ -47,6 +47,8 @@
             this.cbPaymentStaff = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pkDatePay = new System.Windows.Forms.DateTimePicker();
+            this.txtSale = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -103,7 +105,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(55, 681);
+            this.label6.Location = new System.Drawing.Point(56, 732);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 16);
             this.label6.TabIndex = 6;
@@ -128,7 +130,7 @@
             // 
             // txtIntoMoney
             // 
-            this.txtIntoMoney.Location = new System.Drawing.Point(181, 675);
+            this.txtIntoMoney.Location = new System.Drawing.Point(182, 726);
             this.txtIntoMoney.Name = "txtIntoMoney";
             this.txtIntoMoney.Size = new System.Drawing.Size(478, 22);
             this.txtIntoMoney.TabIndex = 10;
@@ -163,7 +165,7 @@
             // btnBillPrinting
             // 
             this.btnBillPrinting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBillPrinting.Location = new System.Drawing.Point(531, 728);
+            this.btnBillPrinting.Location = new System.Drawing.Point(532, 779);
             this.btnBillPrinting.Name = "btnBillPrinting";
             this.btnBillPrinting.Size = new System.Drawing.Size(127, 53);
             this.btnBillPrinting.TabIndex = 20;
@@ -174,7 +176,7 @@
             // btnEditBill
             // 
             this.btnEditBill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditBill.Location = new System.Drawing.Point(372, 728);
+            this.btnEditBill.Location = new System.Drawing.Point(373, 779);
             this.btnEditBill.Name = "btnEditBill";
             this.btnEditBill.Size = new System.Drawing.Size(127, 53);
             this.btnEditBill.TabIndex = 21;
@@ -232,11 +234,31 @@
             this.pkDatePay.Value = new System.DateTime(2023, 3, 28, 10, 47, 57, 0);
             this.pkDatePay.ValueChanged += new System.EventHandler(this.pkDate_ValueChanged);
             // 
+            // txtSale
+            // 
+            this.txtSale.Location = new System.Drawing.Point(182, 678);
+            this.txtSale.Name = "txtSale";
+            this.txtSale.Size = new System.Drawing.Size(478, 22);
+            this.txtSale.TabIndex = 28;
+            this.txtSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(56, 684);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 16);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Giảm giá";
+            // 
             // frmBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 803);
+            this.ClientSize = new System.Drawing.Size(700, 860);
+            this.Controls.Add(this.txtSale);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.pkDatePay);
             this.Controls.Add(this.cbPaymentStaff);
             this.Controls.Add(this.label9);
@@ -257,7 +279,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmBill";
-            this.Text = "Hóa đơn";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.frmBill_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,5 +307,7 @@
         private System.Windows.Forms.ComboBox cbPaymentStaff;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker pkDatePay;
+        private System.Windows.Forms.TextBox txtSale;
+        private System.Windows.Forms.Label label10;
     }
 }

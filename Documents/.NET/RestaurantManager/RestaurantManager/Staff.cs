@@ -58,9 +58,6 @@ namespace RestaurantManager
                 txtNameStaff.Text = dgvStaff.Rows[i].Cells["NAMESTAFF"].Value.ToString();
                 mtxtPhone.Text = dgvStaff.Rows[i].Cells["PHONE"].Value.ToString();
                 txtPosition.Text = dgvStaff.Rows[i].Cells["POSITION"].Value.ToString();
-                //txtSalary.Text = dgvStaff.Rows[i].Cells["Salary"].Value.ToString();
-                //txtAddress.Text = dgvStaff.Rows[i].Cells["Address"].Value.ToString();
-                //dtpBirthday.Text = dgvStaff.Rows[i].Cells["Birthday"].Value.ToString();
                 if (dgvStaff.Rows[i].Cells["GENDER"].Value.ToString() == "Nam") rbBoy.Checked = true;
                 else rbBoy.Checked = false;
                 if (dgvStaff.Rows[i].Cells["GENDER"].Value.ToString() == "Nữ") rbGirl.Checked = true;
@@ -69,10 +66,6 @@ namespace RestaurantManager
 
             }
         }
-
-        
-      
-        
 
         private void cbSapXep_SelectedIndexChanged(object sender, EventArgs e)
         {
